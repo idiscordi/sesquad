@@ -47,7 +47,7 @@ class ServerComms
 				Socket client = listener.accept();
 				
 				//linking up w/ safe reader for instream and getting access to outstream
-				BufferedReader inputData = new BufferedREader(new InputStreamReader(client.getInputStream()));
+				BufferedReader inputData = new BufferedReader(new InputStreamReader(client.getInputStream()));
 				DataOutputStream outputData = new DataOutputStream(client.getOutPutStream());
 				
 				//get some data
