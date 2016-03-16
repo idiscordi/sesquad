@@ -45,6 +45,8 @@ class ServerComms
 				String input = "";
 				String output = "";
 				Socket client = listener.accept();
+				String[] commands = null;
+				
 				
 				//linking up w/ safe reader for instream and getting access to outstream
 				BufferedReader inputData = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -56,7 +58,27 @@ class ServerComms
 					System.out.println("Received: " + input + " from client.");
 				
 				//TODO: parse message and pass to appropriate service if valid
-				
+				//todo: return info to sender(may be added to servercomms or login)
+				//break input into an array
+				commands = input.split(":");
+				//login command "login:username:password"
+				if (commands[0] == "login"){
+					Login loginInfo = new Login(commands[1],commands[2]);
+					String loginResults = loginfo.trylogin();
+					if (debug)
+						System.out.println("login returned: " + loginResults);
+				//account creation commands "createaccount:username:password"
+				else if (commands[0] == "createaccount")
+					Login accountInfo = new Login(commands[1],commands[2]);
+					String accountResults = accountInfo.newaccount();
+					if (debug)
+						System.out.println("account creation returned: " + loginResults);
+				}
+				//default action
+				else{
+					if (debug)
+						System.out.println("input did not start with a valid command, started with: " + commands[0]);
+				}
 				//TODO: wait on return message from service and reformat if necessary to send to client
 				
 				//respond with something
