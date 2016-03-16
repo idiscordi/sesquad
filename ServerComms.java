@@ -67,10 +67,10 @@ class ServerComms
 					String loginResults = loginfo.trylogin();
 					if (debug)
 						System.out.println("login returned: " + loginResults);
-				//account creation commands "createaccount:username:password"
+				//account creation commands "createaccount:username:password:email"
 				else if (commands[0] == "createaccount")
 					Login accountInfo = new Login(commands[1],commands[2]);
-					String accountResults = accountInfo.newaccount();
+					String accountResults = accountInfo.newaccount(commands[3]);
 					if (debug)
 						System.out.println("account creation returned: " + loginResults);
 				}

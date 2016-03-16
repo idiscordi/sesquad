@@ -14,9 +14,9 @@ class login{
 		return str;
 	}
 	
-	public String newaccount(){
+	public String newaccount(String emailadd){
 		if (username.contains("swear"){return "failed:contains swear"}; 
 		//future todo: check for explitives in username
-		return dbhandler.newaccount(username, password);
+		return dbhandler.newaccount(username, password, emailadd);
 	}
 }
