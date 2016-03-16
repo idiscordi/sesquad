@@ -1,5 +1,5 @@
 //handles login functionality, driven by servercomms and speaks to dbhandler
-java.lang.String
+import java.lang.String
 class login{
 	private String password;
 	private String username;
