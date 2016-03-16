@@ -67,12 +67,15 @@ class ServerComms
 					String loginResults = loginfo.trylogin();
 					if (debug)
 						System.out.println("login returned: " + loginResults);
+					output = loginresults;
+				}
 				//account creation commands "createaccount:username:password:email"
-				else if (commands[0] == "createaccount")
+				else if (commands[0] == "createaccount"){
 					Login accountInfo = new Login(commands[1],commands[2]);
 					String accountResults = accountInfo.newaccount(commands[3]);
 					if (debug)
-						System.out.println("account creation returned: " + loginResults);
+						System.out.println("account creation returned: " + accountResults);
+					output = accountResults;
 				}
 				//default action
 				else{
@@ -80,7 +83,10 @@ class ServerComms
 						System.out.println("input did not start with a valid command, started with: " + commands[0]);
 				}
 				//TODO: wait on return message from service and reformat if necessary to send to client
-				
+				if (output.indexof("\n") != output.length()){
+					output.replace("\n","");
+					output = output + "\n";
+				}
 				//respond with something
 				outputData.writeBytes("Server received your message as: " + input + "\n");
 				
