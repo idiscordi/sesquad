@@ -40,7 +40,8 @@ class DBHandler {
 					conn.close();
 					return "failed:Username or Email taken";
 				}
-				INSERT INTO users (username, password, email) VALUES ('dbusername', 'dbpassword', 'dbemail');
+				INSERT INTO users (username, password, email, wins, totalgames, ranking, online) 
+				VALUES ('dbusername', 'dbpassword', 'dbemail', '0', '0', '0', '0');
 			}
 		} catch (Exception e) {
 			System.err.println("Exception Error");
@@ -60,7 +61,8 @@ class DBHandler {
 					return "failed:Username or Email Taken";
 				}
 			}
-			INSERT INTO users (username, password, email) VALUES ('dbusername', 'dbpassword', 'dbemail');
+			INSERT INTO users (username, password, email, wins, totalgames, ranking, online) 
+			VALUES ('dbusername', 'dbpassword', 'dbemail', '0', '0', '0', '0');
 		} catch (Exception e) {
 			System.err.println("Exception Error");
 		}
