@@ -83,12 +83,12 @@ class ServerComms
 						System.out.println("input did not start with a valid command, started with: " + commands[0]);
 				}
 				//TODO: wait on return message from service and reformat if necessary to send to client
-				if (output.indexof("\n") != (output.length() - 1)){
+				if (output.indexof("\n") != -1){
 					output.replace("\n","");
-					output = output + "\n";
 				}
 				//respond with something
 				outputData.writeBytes("Server received your message as: " + input + "\n");
+				outputData.writeBytes("Server returned the message: " + output + "\n");
 				
 			}
 			listener.close();
