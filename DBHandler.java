@@ -1,11 +1,9 @@
 import java.sql.*;
 
 class DBHandler {
-	String dbusername;
-	String dbpassword;
-	String dbemail;
-
-	public static DBHandler {	
+	public static DBHandlerLogin(String username, String password) {
+		String dbusername;
+		String dbpassword;
 		try {
 			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
 			Statment stmt = conn.createStatement();
@@ -25,7 +23,10 @@ class DBHandler {
 		}
 	}
 
-    public static DBHandler {
+    public static DBHandlerNewAcc(String username, String password, String email) {
+		String dbusername;
+		String dbpassword;
+		String dbemail;
 		try {
 			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
 			Statement stmt = conn.createStatement();
@@ -35,9 +36,9 @@ class DBHandler {
 				dbusername = rs.getString("username");
 				dbemail = rs.getString("email");
 				
-				if(dbusername.equals(username) && dbemail.equals(email)) {
+				if(dbusername.equals(username) || dbemail.equals(email)) {
 					conn.close();
-					return "failed:Username and Email taken";
+					return "failed:Username or Email taken";
 				}
 			}
 		} catch (Exception e) {
@@ -45,3 +46,14 @@ class DBHandler {
 		}
 	}	
 }
+
+
+//INSERT FUNCTION
+// create a Statement from the connection
+Statement statement = conn.createStatement();
+
+// insert the data
+statement.executeUpdate("INSERT INTO Customers " + "VALUES (1001, 'Simpson', 'Mr.', 'Springfield', 2001)");
+statement.executeUpdate("INSERT INTO Customers " + "VALUES (1002, 'McBeal', 'Ms.', 'Boston', 2004)");
+statement.executeUpdate("INSERT INTO Customers " + "VALUES (1003, 'Flinstone', 'Mr.', 'Bedrock', 2003)");
+statement.executeUpdate("INSERT INTO Customers " + "VALUES (1004, 'Cramden', 'Mr.', 'New York', 2001)");
