@@ -38,10 +38,8 @@ class DBHandler {
 				
 				if(dbusername.equals(username) || dbemail.equals(email)) {
 					conn.close();
-					return "failed:Username or Email taken";
+					return "failed:Username is Taken";
 				}
-				INSERT INTO users (username, password, email, wins, totalgames, ranking, online) 
-				VALUES ('dbusername', 'dbpassword', 'dbemail', '0', '0', '0', '0');
 			}
 		} catch (Exception e) {
 			System.err.println("Exception Error");
@@ -50,7 +48,7 @@ class DBHandler {
 		try {
 			Connection conn = DriveManager.getConnection("jbdc:sglserver://localhost:1433");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT username FROM users WHERE email= " + email)
+			ResultSet rs = stmt.executeQuery("SELECT username FROM users WHERE email= " + email);
 			
 			while (rs.next()) {
 				dbusername = rs.getString("username");
@@ -58,7 +56,7 @@ class DBHandler {
 				
 				if(dbusername.equals(username) || dbemail.equals(email)) {
 					conn.close();
-					return "failed:Username or Email Taken";
+					return "failed:Email is Taken";
 				}
 			}
 			INSERT INTO users (username, password, email, wins, totalgames, ranking, online) 
