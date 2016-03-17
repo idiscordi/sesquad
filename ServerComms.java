@@ -102,6 +102,7 @@ class ServerComms
 					outputData.writeBytes("Server returned nothing \n");
 			}		
 			
+			client.close();
 			listener.close();
 		}
 		catch(Exception e){ System.out.println(e.toString());}
