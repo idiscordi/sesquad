@@ -40,6 +40,7 @@ class DBHandler {
 					conn.close();
 					return "failed:Username or Email taken";
 				}
+				INSERT INTO users (username, password, email) VALUES ('dbusername', 'dbpassword', 'dbemail');
 			}
 		} catch (Exception e) {
 			System.err.println("Exception Error");
@@ -59,6 +60,7 @@ class DBHandler {
 					return "failed:Username or Email Taken";
 				}
 			}
+			INSERT INTO users (username, password, email) VALUES ('dbusername', 'dbpassword', 'dbemail');
 		} catch (Exception e) {
 			System.err.println("Exception Error");
 		}
