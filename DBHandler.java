@@ -1,7 +1,7 @@
 import java.sql.*;
 
 class DBHandler {
-	public static DBHandlerLogin(String username, String password) {
+	public static trylogin(String username, String password) {
 		String dbusername;
 		String dbpassword;
 		try {
@@ -23,22 +23,21 @@ class DBHandler {
 		}
 	}
 
-    public static DBHandlerNewAcc(String username, String password, String email) {
+    public static newaccount(String username, String password, String email) {
 		String dbusername;
 		String dbpassword;
 		String dbemail;
 		try {
 			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT email FROM users WHERE username= " + username);
+			ResultSet rs = stmt.executeQuery("SELECT email FROM users");
 			
 			while (rs.next()) {
-				dbusername = rs.getString("username");
 				dbemail = rs.getString("email");
 				
-				if(dbusername.equals(username) || dbemail.equals(email)) {
+				if(dbemail.equals(email)) {
 					conn.close();
-					return "failed:Username is Taken";
+					return "failed:email is Taken";
 				}
 			}
 		} catch (Exception e) {
@@ -48,15 +47,14 @@ class DBHandler {
 		try {
 			Connection conn = DriveManager.getConnection("jbdc:sglserver://localhost:1433");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT username FROM users WHERE email= " + email);
+			ResultSet rs = stmt.executeQuery("SELECT username FROM users");
 			
 			while (rs.next()) {
 				dbusername = rs.getString("username");
-				dbemail = rs.getString("email");
 				
-				if(dbusername.equals(username) || dbemail.equals(email)) {
+				if(dbusername.equals(username)) {
 					conn.close();
-					return "failed:Email is Taken";
+					return "failed:username is Taken";
 				}
 			}
 			INSERT INTO users (username, password, email, wins, totalgames, ranking, online) 
