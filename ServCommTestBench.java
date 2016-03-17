@@ -8,7 +8,7 @@ public class ServCommTestBench
 		String toSend;
 		String received;
 		
-		Socket server_connection = new Socket("localhost", 2000);
+		Socket server_connection = new Socket(InetAddress.getByName("uaf132992.ddns.uark.edu"), 55000);
 		BufferedReader incoming = new BufferedReader(new InputStreamReader(server_connection.getInputStream()));
 		DataOutputStream outbound = new DataOutputStream(server_connection.getOutputStream());
 		
@@ -20,7 +20,7 @@ public class ServCommTestBench
 		System.out.println("\ngot back comms\n");
 		server_connection.close();
 		
-		server_connection = new Socket("localhost", 2000);
+		server_connection = new Socket(InetAddress.getByName("uaf132992.ddns.uark.edu"), 55000);
 		incoming = new BufferedReader(new InputStreamReader(server_connection.getInputStream()));
 		outbound = new DataOutputStream(server_connection.getOutputStream());
 	
@@ -32,7 +32,7 @@ public class ServCommTestBench
 		System.out.println("\ngot back comms\n");
 		server_connection.close();
 		
-		server_connection = new Socket("localhost", 2000);
+		server_connection = new Socket(InetAddress.getByName("uaf132992.ddns.uark.edu"), 55000);
 		incoming = new BufferedReader(new InputStreamReader(server_connection.getInputStream()));
 		outbound = new DataOutputStream(server_connection.getOutputStream());
 		
@@ -44,7 +44,7 @@ public class ServCommTestBench
 		System.out.println("\ngot back comms\n");
 		server_connection.close();
 		
-		server_connection = new Socket("localhost", 2000);
+		server_connection = new Socket(InetAddress.getByName("uaf132992.ddns.uark.edu"), 55000);
 		incoming = new BufferedReader(new InputStreamReader(server_connection.getInputStream()));
 		outbound = new DataOutputStream(server_connection.getOutputStream());
 		
@@ -56,7 +56,7 @@ public class ServCommTestBench
 		System.out.println("\ngot back comms\n");
 		server_connection.close();
 		
-		server_connection = new Socket("localhost", 2000);
+		server_connection = new Socket(InetAddress.getByName("uaf132992.ddns.uark.edu"), 55000);
 		incoming = new BufferedReader(new InputStreamReader(server_connection.getInputStream()));
 		outbound = new DataOutputStream(server_connection.getOutputStream());
 		
@@ -68,7 +68,7 @@ public class ServCommTestBench
 		System.out.println("\ngot back comms\n");
 		server_connection.close();
 		
-		server_connection = new Socket("localhost", 2000);
+		server_connection = new Socket(InetAddress.getByName("uaf132992.ddns.uark.edu"), 55000);
 		incoming = new BufferedReader(new InputStreamReader(server_connection.getInputStream()));
 		outbound = new DataOutputStream(server_connection.getOutputStream());
 		
@@ -80,7 +80,7 @@ public class ServCommTestBench
 		System.out.println("\ngot back comms\n");
 		server_connection.close();
 		
-		server_connection = new Socket("localhost", 2000);
+		server_connection = new Socket(InetAddress.getByName("uaf132992.ddns.uark.edu"), 55000);
 		incoming = new BufferedReader(new InputStreamReader(server_connection.getInputStream()));
 		outbound = new DataOutputStream(server_connection.getOutputStream());
 		

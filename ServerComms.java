@@ -37,7 +37,7 @@ class ServerComms
 		//TODO: Accept many communications, this is single blocking right now
 		try
 		{
-			ServerSocket listener = new ServerSocket(2000);
+			ServerSocket listener = new ServerSocket(55000);
 			//while im not ordered to shutdown
 			while(!shutdown)
 			{
