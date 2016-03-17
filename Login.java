@@ -11,7 +11,7 @@ class Login{
 	
 	public String trylogin(){
 	try{
-		String str = DBHandler.trylogin(username, password);
+		String str = DBHandler.DBLogin(username, password);
 		return str;
 	} catch (Exception e) {System.err.println("Exception Error");}
 	}
@@ -20,7 +20,7 @@ class Login{
 	try{
 		if (username.contains("swear"){return "failed:contains swear"}; 
 		//future todo: check for explitives in username
-		return DBHandler.newaccount(username, password, emailadd);
+		return DBHandler.DBNewAcc(username, password, emailadd);
 	} catch (Exception e) {System.err.println("Exception Error");}
 	}
 }
