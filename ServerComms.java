@@ -63,19 +63,27 @@ class ServerComms
 				commands = input.split(":");
 				//login command "login:username:password"
 				if (commands[0] == "login"){
-					Login loginInfo = new Login(commands[1],commands[2]);
-					String loginResults = loginfo.trylogin();
-					if (debug)
-						System.out.println("login returned: " + loginResults);
-					output = loginresults;
+					if ((commands[1].length != 0) && (commands[2].length != 0)){
+						Login loginInfo = new Login(commands[1],commands[2]);
+						String loginResults = loginfo.trylogin();
+						if (debug)
+							System.out.println("login returned: " + loginResults);
+						output = loginresults;
+					} else {
+						output = "failed:" + commands[0] + ":command missing values";
+					}
 				}
 				//account creation commands "createaccount:username:password:email"
 				else if (commands[0] == "createaccount"){
-					Login accountInfo = new Login(commands[1],commands[2]);
-					String accountResults = accountInfo.newaccount(commands[3]);
-					if (debug)
-						System.out.println("account creation returned: " + accountResults);
-					output = accountResults;
+					if ((commands[1].length != 0) && (commands[2].length != 0) && (commands[3].length != 0){
+						Login accountInfo = new Login(commands[1],commands[2]);
+						String accountResults = accountInfo.newaccount(commands[3]);
+						if (debug)
+							System.out.println("account creation returned: " + accountResults);
+						output = accountResults;
+					} else {
+						output = "failed:" + commands[0] + ":command missing values";
+					}
 				}
 				//default action
 				else{
@@ -88,9 +96,12 @@ class ServerComms
 				}
 				//respond with something
 				outputData.writeBytes("Server received your message as: " + input + "\n");
-				outputData.writeBytes("Server returned the message: " + output + "\n");
-				
-			}
+				if ((output != null) && (output != ""){
+					outputData.writeBytes("Server returned the message: " + output + "\n");
+				} else {
+					outputData.writeBytes("Server returned nothing \n");
+			}		
+			
 			listener.close();
 		}
 		catch(Exception e){ System.out.println(e.toString());}
