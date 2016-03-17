@@ -1,7 +1,7 @@
 import java.sql.*;
 
 class DBHandler {
-	public static trylogin(String username, String password) {
+	public static DBLogin(String username, String password) {
 		String dbusername;
 		String dbpassword;
 		try {
@@ -23,7 +23,7 @@ class DBHandler {
 		}
 	}
 
-    public static newaccount(String username, String password, String email) {
+    public static DBNewAcc(String username, String password, String email) {
 		String dbusername;
 		String dbpassword;
 		String dbemail;
