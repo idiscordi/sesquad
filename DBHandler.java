@@ -2,7 +2,6 @@ import java.sql.*;
 
 class DBHandler {
 	public static String DBLogin(String username, String password) {
-		String dbusername;
 		String dbpassword;
 		try {
 			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
@@ -10,10 +9,9 @@ class DBHandler {
 			ResultSet rs = stmt.executeQuery("SELECT password FROM users WHERE username = " + username);
 	
 			while (rs.next()) {
-				dbusername = rs.getString("username");
 				dbpassword = rs.getString("password");
 		
-				if(dbusername.equals(username) && dbpassword.equals(password)) {
+				if(dbpassword.equals(password)) {
 					conn.close();
 					return "success:user and pass correct";
 				}
