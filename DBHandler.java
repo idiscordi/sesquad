@@ -3,7 +3,7 @@ import java.sql.*;
 class DBHandler {
 	public static String DBLogin(String username, String password) {
 		String dbpassword;
-		static final String JDBC_Driver = "com.mysql.jdbc.Driver";
+		String JDBC_Driver = "com.mysql.jdbc.Driver";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
@@ -28,7 +28,7 @@ class DBHandler {
 		String dbusername;
 		String dbpassword;
 		String dbemail;
-		static final String JDBC_Driver = "com.mysql.jdbc.Driver";
+		String JDBC_Driver = "com.mysql.jdbc.Driver";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
