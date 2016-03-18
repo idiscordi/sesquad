@@ -1,0 +1,34 @@
+Compile and Run Instructions for showing basic connectivity
+
+ssh to vm.  
+cd /home/jtvaught/projectfiles   (I have set this to rwx globally recursively so you can all get in here)
+javac ServerCommsDeprecated
+java ServerCommsDeprecated  (alternativelyto run in background java ServerComms &)
+
+from another machine 
+
+javac ServCommTestBench
+java ServCommTestBench
+
+
+Watch echos.
+
+
+While ServerCommsDeprecated is still running on the VM
+Launch Mobile App Sim, show message received by server (recommended not running servcommsdep in background)
+Show message received back by mobile app in console of sim tools
+
+
+To show that the DB is running and table is built
+
+in VM
+
+mysql -h localhost -u handler -p
+<enter handler as password when requested>
+show databases;
+use squaddb;
+show tables;
+describe users;
+select * from users;
+
+
