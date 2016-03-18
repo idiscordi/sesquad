@@ -100,9 +100,12 @@ class ServerComms
 					outputData.writeBytes("Server returned the message: " + output + "\n");
 				} else {
 					outputData.writeBytes("Server returned nothing \n");
+				
+				//moved from outside the while loop.  had 0 chance of firing without shutdown signal	
+				client.close();
 			}		
 			
-			client.close();
+			
 			listener.close();
 		}
 		catch(Exception e){ System.out.println(e.toString());}
