@@ -64,10 +64,10 @@ class DBHandler {
 			/*
 			This should be 
 			String sql = "INSERT INTO users (username, password, email, wins, totalgames, ranking, online)"
-			+ "VALUES ('" + dbusername + "', '" + dbpassword + "', '" + dbemail + "', '0', '0', '0', '0')";
+			+ "VALUES ('" + " + username + "', '" + dbpassword + "', '" + dbemail + "', '0', '0', '0', '0')";
 			*/
 			String sql = "INSERT INTO users (username, password, email, wins, totalgames, ranking, online)"
-			+ "VALUES ('dbusername', 'dbpassword', 'dbemail', '0', '0', '0', '0')";
+			+ "VALUES ("+username+", "+password+", "+email+", '0', '0', '0', '0')";
 			stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			System.err.println(e);
