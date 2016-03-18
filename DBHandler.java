@@ -19,7 +19,7 @@ class DBHandler {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println("Exception Error");
+			System.err.println(e);
 		}
 		return "failed:login information does not match";
 	}
@@ -42,7 +42,7 @@ class DBHandler {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println("Exception Error");
+			System.err.println(e);
 		}
 		
 		try {
@@ -62,7 +62,7 @@ class DBHandler {
 			+ "VALUES ('dbusername', 'dbpassword', 'dbemail', '0', '0', '0', '0')";
 			stmt.executeUpdate(sql);
 		} catch (Exception e) {
-			System.err.println("Exception Error");
+			System.err.println(e);
 		}
 		return "success:user account created";
 	}	
