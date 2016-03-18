@@ -26,15 +26,27 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func signinTapped(sender: AnyObject) {
-        //let userUsername = txtUsername.text;
-        //let userPassword = txtPassword.text;
+        let userUsername = txtUsername.text;
+        let userPassword = txtPassword.text;
+        
+        //if(userUsername!.isEmpty || userPassword!.isEmpty){return;}
+        
+        
         
         //read data
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((" " as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData(("poop\n" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        //let myURL = NSURL(string: "uaf132992.ddns.uark.edu");
+        //let request = NSMutableURLRequest(URL: myURL!);
+        
+        //request.HTTPMethod = "POST";
+        
+        
+        //let postString = "username=\(userUsername)&password=\(userPassword)";
+        //request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         
         let serverResponse = file.readDataToEndOfFile()
         
@@ -42,6 +54,13 @@ class LoginVC: UIViewController {
 
         
         //check to see if info matches
+        
+        
+        //login successful
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn");
+        NSUserDefaults.standardUserDefaults().synchronize();
+        
+        self.dismissViewControllerAnimated(true, completion: nil);
         
     }
     
