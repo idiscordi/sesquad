@@ -60,6 +60,12 @@ class DBHandler {
 					return "failed:username is Taken";
 				}
 			}
+			
+			/*
+			This should be 
+			String sql = "INSERT INTO users (username, password, email, wins, totalgames, ranking, online)"
+			+ "VALUES ('" + dbusername + "', '" + dbpassword + "', '" + dbemail + "', '0', '0', '0', '0')";
+			*/
 			String sql = "INSERT INTO users (username, password, email, wins, totalgames, ranking, online)"
 			+ "VALUES ('dbusername', 'dbpassword', 'dbemail', '0', '0', '0', '0')";
 			stmt.executeUpdate(sql);
