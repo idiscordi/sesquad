@@ -30,7 +30,7 @@ class DBHandler {
 		String dbemail;
 		static final String JDBC_Driver = "com.mysql.jdbc.Driver";
 		try {
-			Class.forName("com.mysql.jdbc.Driver")
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT email FROM users");
