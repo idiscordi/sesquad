@@ -14,13 +14,15 @@ class Login{
 		String str = DBHandler.DBLogin(username, password);
 		return str;
 	} catch (Exception e) {System.err.println("Exception Error");}
+		return "exception1";
 	}
 	
 	public String newaccount(String emailadd){
 	try{
-		if (username.contains("swear"){return "failed:contains swear"}; 
+		if (username.contains("swear")){return "failed:contains swear";} 
 		//future todo: check for explitives in username
 		return DBHandler.DBNewAcc(username, password, emailadd);
 	} catch (Exception e) {System.err.println("Exception Error");}
+		return "exception2";
 	}
 }
