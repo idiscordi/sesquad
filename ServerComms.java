@@ -63,19 +63,19 @@ class ServerComms
 				commands = input.split(":");
 				//login command "login:username:password"
 				if (commands[0] == "login"){
-					if ((commands[1].length != 0) && (commands[2].length != 0)){
+					if ((commands[1].length() != 0) && (commands[2].length() != 0)){
 						Login loginInfo = new Login(commands[1],commands[2]);
-						String loginResults = loginfo.trylogin();
+						String loginResults = loginInfo.trylogin();
 						if (debug)
 							System.out.println("login returned: " + loginResults);
-						output = loginresults;
+						output = loginResults;
 					} else {
 						output = "failed:" + commands[0] + ":command missing values";
 					}
 				}
 				//account creation commands "createaccount:username:password:email"
 				else if (commands[0] == "createaccount"){
-					if ((commands[1].length != 0) && (commands[2].length != 0) && (commands[3].length != 0){
+					if ((commands[1].length() != 0) && (commands[2].length() != 0) && (commands[3].length() != 0)){
 						Login accountInfo = new Login(commands[1],commands[2]);
 						String accountResults = accountInfo.newaccount(commands[3]);
 						if (debug)
@@ -91,16 +91,16 @@ class ServerComms
 						System.out.println("input did not start with a valid command, started with: " + commands[0]);
 				}
 				//TODO: wait on return message from service and reformat if necessary to send to client
-				if (output.indexof("\n") != -1){
+				if (output.indexOf("\n") != -1){
 					output.replace("\n","");
 				}
 				//respond with something
 				outputData.writeBytes("Server received your message as: " + input + "\n");
-				if ((output != null) && (output != ""){
+				if ((output != null) && (output != "")){
 					outputData.writeBytes("Server returned the message: " + output + "\n");
 				} else {
 					outputData.writeBytes("Server returned nothing \n");
-				
+				}
 				//moved from outside the while loop.  had 0 chance of firing without shutdown signal	
 				client.close();
 			}		
