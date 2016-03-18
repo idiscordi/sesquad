@@ -5,8 +5,7 @@ class DBHandler {
 		String dbpassword;
 		String JDBC_Driver = "com.mysql.jdbc.Driver";
 		try {
-			DriverManager.registerDriver (new oracle.jdbc.OracleDriver());
-			//Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT password FROM users WHERE username = " + username);
@@ -31,8 +30,7 @@ class DBHandler {
 		String dbemail;
 		String JDBC_Driver = "com.mysql.jdbc.Driver";
 		try {
-			DriverManager.registerDriver (new oracle.jdbc.OracleDriver());
-			//Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT email FROM users");
