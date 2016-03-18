@@ -4,7 +4,7 @@ class DBHandler {
 	public static String DBLogin(String username, String password) {
 		String dbpassword;
 		try {
-			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT password FROM users WHERE username = " + username);
 	
@@ -27,7 +27,7 @@ class DBHandler {
 		String dbpassword;
 		String dbemail;
 		try {
-			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT email FROM users");
 			
@@ -44,7 +44,7 @@ class DBHandler {
 		}
 		
 		try {
-			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT username FROM users");
 			
