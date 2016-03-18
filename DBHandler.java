@@ -1,12 +1,12 @@
 import java.sql.*;
 
 class DBHandler {
-	public static DBLogin(String username, String password) {
+	public static String DBLogin(String username, String password) {
 		String dbusername;
 		String dbpassword;
 		try {
 			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
-			Statment stmt = conn.createStatement();
+			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT password FROM users WHERE username = " + username);
 	
 			while (rs.next()) {
@@ -21,9 +21,10 @@ class DBHandler {
 		} catch (Exception e) {
 			System.err.println("Exception Error");
 		}
+		return "failed:login information does not match";
 	}
 
-    public static DBNewAcc(String username, String password, String email) {
+    public static String DBNewAcc(String username, String password, String email) {
 		String dbusername;
 		String dbpassword;
 		String dbemail;
@@ -45,7 +46,7 @@ class DBHandler {
 		}
 		
 		try {
-			Connection conn = DriveManager.getConnection("jbdc:sglserver://localhost:1433");
+			Connection conn = DriverManager.getConnection("jbdc:sqlserver://localhost:1433");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT username FROM users");
 			
@@ -63,5 +64,6 @@ class DBHandler {
 		} catch (Exception e) {
 			System.err.println("Exception Error");
 		}
+		return "success:user account created";
 	}	
 }
