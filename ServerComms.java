@@ -45,7 +45,7 @@ class ServerComms
 				String input = "";
 				String output = "";
 				Socket client = listener.accept();
-				String[] commands = null;
+				//String[] commands = null;
 				
 				
 				//linking up w/ safe reader for instream and getting access to outstream
@@ -57,8 +57,8 @@ class ServerComms
 				if(debug && input != null)
 					System.out.println("Received: " + input + " from client.");
 				
-				//TODO: parse message and pass to appropriate service if valid
-				//todo: return info to sender(may be added to servercomms or login)
+				/*
+				//TODO: return info to sender(may be added to servercomms or login)
 				//break input into an array
 				commands = input.split(":");
 				//login command "login:username:password"
@@ -89,7 +89,11 @@ class ServerComms
 				else{
 					if (debug)
 						System.out.println("input did not start with a valid command, started with: " + commands[0]);
-				}
+				}*/
+				
+				//pass info to parser
+				output = Parser.Execute(input, debug);
+				
 				//TODO: wait on return message from service and reformat if necessary to send to client
 				if (output.indexOf("\n") != -1){
 					output.replace("\n","");
