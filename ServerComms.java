@@ -57,40 +57,6 @@ class ServerComms
 				if(debug && input != null)
 					System.out.println("Received: " + input + " from client.");
 				
-				/*
-				//TODO: return info to sender(may be added to servercomms or login)
-				//break input into an array
-				commands = input.split(":");
-				//login command "login:username:password"
-				if (commands[0] == "login"){
-					if ((commands[1].length() != 0) && (commands[2].length() != 0)){
-						Login loginInfo = new Login(commands[1],commands[2]);
-						String loginResults = loginInfo.trylogin();
-						if (debug)
-							System.out.println("login returned: " + loginResults);
-						output = loginResults;
-					} else {
-						output = "failed:" + commands[0] + ":command missing values";
-					}
-				}
-				//account creation commands "createaccount:username:password:email"
-				else if (commands[0] == "createaccount"){
-					if ((commands[1].length() != 0) && (commands[2].length() != 0) && (commands[3].length() != 0)){
-						Login accountInfo = new Login(commands[1],commands[2]);
-						String accountResults = accountInfo.newaccount(commands[3]);
-						if (debug)
-							System.out.println("account creation returned: " + accountResults);
-						output = accountResults;
-					} else {
-						output = "failed:" + commands[0] + ":command missing values";
-					}
-				}
-				//default action
-				else{
-					if (debug)
-						System.out.println("input did not start with a valid command, started with: " + commands[0]);
-				}*/
-				
 				//pass info to parser
 				output = Parser.Execute(input);
 				
