@@ -92,7 +92,7 @@ class ServerComms
 				}*/
 				
 				//pass info to parser
-				output = Parser.Execute(input, debug);
+				output = Parser.Execute(input);
 				
 				//TODO: wait on return message from service and reformat if necessary to send to client
 				if (output.indexOf("\n") != -1){
