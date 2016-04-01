@@ -3,7 +3,7 @@ public class Parser {
 
 	public Parser(String input) {}
 	
-	public static String Execute(String input, boolean debug){
+	public static String Execute(String input){
 		try {
 			String output = "";
 			while(output.contains("::")){
@@ -46,9 +46,9 @@ public class Parser {
 			*/
 			//default action
 			else{
-				output = "error:" + commandarr[0] + ":is invalid or missing values";
+				output = "error:invalid or missing values:" + commandarr[0];
 			}
-				if (debug)
+				if (ServerComms.debug)
 					System.out.println(commandarr[0] + " returned:" + output);
 			return output;
 		} catch (Exception e) {
