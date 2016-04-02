@@ -4,48 +4,65 @@
 import java.util.*;
 public class GameServices implements Runnable{
 	
+	private Thread t;
+	private String name;
 	private static ArrayList<duck> line;
 	private static ArrayList<String> games;
 	//private static game[] games; waiting on game object
 	
+	GameServices(String reference){
+		line = new ArrayList<duck>(0);
+		games = new ArrayList<String>(0);
+		name = reference;
+	}
+	
 	@Override
 	public void run() {
 		try {
-			line = null;
-			games = null;
 			while(ServerComms.shutdown == false){
 				synchronized (line) {
 					Collections.sort(line);
 					this.match();
 				}
+				Thread.sleep(1000);
 			}
 		} catch (Exception e) {
 			 System.out.println(e.toString());
 		}
 	}
+	
+	public void start(){
+		if (t == null){
+			t = new Thread (this, name);
+			t.start ();
+		}
+	}
 
 	private void match(){
-		try {
-			Iterator<duck> iterator = line.iterator();
-			duck prev = null;
-			duck curr = null;
-			if(iterator.hasNext())
-				prev = iterator.next();
-			while(iterator.hasNext()){
-				curr = iterator.next();
-				//logic for creating a game subject to change
-				if((prev.rating - curr.rating) <= Integer.max(prev.wait, curr.wait)){
-					synchronized (games){
-					//TODO create game instance waiting on game object
-					//TODO notify players of game id
+		 {
+			try {
+				Iterator<duck> iterator = line.iterator();
+				duck prev = null;
+				duck curr = null;
+				if(iterator.hasNext())
+					prev = iterator.next();
+				while(iterator.hasNext()){
+					curr = iterator.next();
+					//logic for creating a game subject to change
+					if((prev.rating - curr.rating) <= Integer.max(prev.wait, curr.wait)){
+						synchronized (games){
+						//TODO create game instance waiting on game object
+						//TODO notify players of game id
+							games.add(prev.name + curr.name);
+						}
+						//remove players from line
+						this.remove(prev.name);
+						this.remove(curr.name);
 					}
-					//remove players from line
-					line.remove(prev);
-					line.remove(curr);
 				}
+			} catch (Exception e) {
+				System.out.println(e.toString());
 			}
-		} catch (Exception e) {
-			System.out.println(e.toString());
 		}
 	}
 
@@ -58,7 +75,7 @@ public class GameServices implements Runnable{
 			synchronized (line) {
 				line.add(new duck(username, "0"));
 			}
-			return "success:" +username+ ":added to matchmaking queue";
+			return "success:join:" +username;
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			return "error:join:exception";
@@ -82,6 +99,53 @@ public class GameServices implements Runnable{
 		} catch (Exception e) {
 		System.out.println(e.toString());
 		return "error:leave:exception";
+		}
+	}
+	
+	private void remove(String username){
+		try{
+			synchronized (line) {
+				Iterator<duck> iterator = line.iterator();
+				while(iterator.hasNext()){
+					if (iterator.next().name == username){
+						iterator.remove();
+					}
+				}
+			}
+		} catch (Exception e) {
+		System.out.println(e.toString());
+		}
+	}
+	
+	public static String getline(){
+		try{
+			String out = "line";
+			synchronized (line) {
+				Iterator<duck> iterator = line.iterator();
+				while(iterator.hasNext()){
+					out = out + ":" +iterator.next().name;
+				}
+			}
+			return out;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return "error:getline:exception";
+		}
+	}
+	
+	public static String getgames(){
+		try{
+			String out = "games";
+			synchronized (games) {
+				Iterator<String> iterator = games.iterator();
+				while(iterator.hasNext()){
+					out = out + ":" +iterator.next();
+				}
+			}
+			return out;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return "error:getgames:exception";
 		}
 	}
 }
