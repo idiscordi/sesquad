@@ -1,11 +1,14 @@
 import java.sql.*;
 
-class DBHandler {
+public final class DBHandler {
 	public static String DBLogin(String username, String password) {
 		String dbpassword;
+		System.out.println("\nSetting driver string\n");
 		String JDBC_Driver = "com.mysql.jdbc.Driver";
 		try {
+			System.out.println("\nAttempting driver load\n");
 			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("\ndriver should have been loaded\n");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT password FROM users WHERE username = " + username);
