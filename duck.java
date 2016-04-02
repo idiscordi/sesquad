@@ -1,5 +1,5 @@
 
-public class duck {
+public class duck implements Comparable<duck>{
 	public String name;
 	public int rating;
 	public int wait;
@@ -13,5 +13,12 @@ public class duck {
 			System.out.println(e.toString());
 			rating = -1;
 		}
+	}
+
+	@Override
+	public int compareTo(duck arg0) {
+		if(this.rating == arg0.rating)
+			return 0;
+			return this.rating - arg0.rating;
 	}
 }
