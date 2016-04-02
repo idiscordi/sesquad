@@ -2,7 +2,7 @@
 	$pageInfoStr = "Group 10 Admin Functionality";
 	$pulledName;
 	$pulledPass;
-	$infoArr;
+	$infoArr; #unused
 	$serverAddr = 'localhost';
 	$dbloginname = 'handler';
 	$dbloginpw = 'handler';
@@ -10,13 +10,17 @@
 	$sqlreturn;
 	$retrow;
 	$loginpw;
-
-	if(isset($_REQUEST["logout"]))
+	
+	
+	if(isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true)
 	{
-		unset($_SESSION["isAdmin"]);
+		#unset($_SESSION["isAdmin"]);
 		session_unset();
 		session_destroy();
 		session_start();
+		unset($_REQUEST["logout"]);
+		unset($_REQUEST["updateForm"]);
+		echo "<br>Account has been logged out due to user's request or elevated action performed<br><br>";
 	}
 
 	#dirty work of pulling admin's pw from db to validate against entry
@@ -72,7 +76,7 @@
                              "</tr>");
     			}
 		echo("</table>");
-		}
+		} else { echo "<br>NO RECORD FOUND<br><br>";}
 	}
 
 	#call to validate admin password, use in login form submit
@@ -100,9 +104,65 @@
 	{
 		$_SESSION["uNamePull"] = $_REQUEST["userToPull"];
 	}
+
+	function updateUser()
+	{
+		global $dbloginname, $dbloginpw, $serverAddr, $sqlreturn, $dbtouse;
 	
-	#var_dump($_REQUEST["login"]);
-	#var_dump($_REQUEST["pwLogin"]);
+		$editName = $_REQUEST["editUser"];
+		
+		$sqlpw; $sqlemail; $sqlwins; $sqlgames; $sqlrank;
+
+		#if they are set and non-blank, push them to queries
+		if(isset($_REQUEST["editPW"]) && $_REQUEST["editPW"] != "")
+		{
+		$sqlpw = "UPDATE users SET password='" . $_REQUEST["editPW"] ."' WHERE username ='". $editName . "'";
+		}
+		if(isset($_REQUEST["editEmail"]) && $_REQUEST["editEmail"] != "")
+		{
+		$sqlemail = "UPDATE users SET email='". $_REQUEST["editEmail"] ."' WHERE username ='". $editName . "'";
+		}
+		if(isset($_REQUEST["editWins"]) && $_REQUEST["editWins"] != "")
+		{
+		$sqlwins = "UPDATE users SET wins='". $_REQUEST["editWins"] ."' WHERE username ='". $editName . "'"; 	
+		}
+		if(isset($_REQUEST["editTotalGames"]) && $_REQUEST["editTotalGames"] != "")
+		{
+		$sqlgames = "UPDATE users SET totalgames='". $_REQUEST["editTotalGames"] ."' WHERE username ='". $editName . "'";
+		}
+		if(isset($_REQUEST["editRanking"]) && $_REQUEST["editRanking"] != "")
+		{
+		$sqlrank = "UPDATE users SET ranking='". $_REQUEST["editRanking"] ."' WHERE username ='". $editName . "'";
+		}
+		
+		
+		$dbcon = mysqli_connect($serverAddr, $dbloginname, $dbloginpw, $dbtouse);
+
+		#if the queries were built, update row
+		#$sqlpw; $sqlemail; $sqlwins; $sqlgames; $sqlrank;
+		if ( !$dbcon )
+			die("Could not connect to database server");
+		if(isset($sqlpw))
+			{if(!mysqli_query($dbcon, $sqlpw))
+				{echo "<br><br>Failed to execute " . $sqlpw . "<br><br>";}}
+		if(isset($sqlemail))
+			{if(!mysqli_query($dbcon, $sqlemail))
+				{echo "<br><br>Failed to execute " . $sqlemail . "<br><br>";}}
+		if(isset($sqlwins))
+			{if(!mysqli_query($dbcon, $sqlwins))
+				{echo "<br><br>Failed to execute " . $sqlwins . "<br><br>";}}
+		if(isset($sqlgames))
+			{if(!mysqli_query($dbcon, $sqlgames))
+				{echo "<br><br>Failed to execute " . $sqlgames . "<br><br>";}}
+		if(isset($sqlrank))
+			{if(!mysqli_query($dbcon, $sqlrank))
+				{echo "<br><br>Failed to execute " . $sqlrank . "<br><br>";}}
+		
+		mysqli_close($dbcon);
+		echo("Account has been logged out after performing elevated action.<br>");
+	}
+	
+	
 	if(isset($_REQUEST["login"]))
 	{
 		global $loginpw;
@@ -116,6 +176,15 @@
 	if(isset($_REQUEST["pullForm"]))
 	{
 		setPullName();
+		unset($_REQUEST["pullForm"]);
+	}
+
+	#var_dump($_SESSION["isAdmin"]);
+
+	if(isset($_REQUEST["updateForm"]))
+	{
+		updateUser();
+		unset($_REQUEST["updateForm"]);
 	}
 
 	#var_dump($_SESSION["isAdmin"]);
@@ -142,16 +211,36 @@
 	{ ?>
 
 	<h>User Account Administration Interface</h>
-	<form onsubmit=true action="adminstaff.php" method="get"
+	<br>
+	
+	<br>
+	<h>Pull User Data</h><br>
+	<form onsubmit=true action="adminstaff.php" method="post"
 	name="f2" id="f2">
 	Username to Pull: <input type="text" name="userToPull" id="userToPull" value=""><br>
 	<input type="hidden" name="pullForm" id="pullForm" value="true">
 	<input type="submit" value="Pull User"><br>
 	</form>
 
-	<br><br>
+	
+	
+	<br>
+	<h>Change User Data</h><br>
+	<form onsubmit=true action="adminstaff.php" method="post"
+	name="f3" id="f3">
+	Username to Edit: <input type="text" name="editUser" id="editUser" value=""><br>
+	Change password to: <input type="text" name="editPW" id="editPW" value=""><br>
+	Change email to: <input type="text" name="editEmail" id="editEmail" value=""><br>
+	Change wins to: <input type="text" name="editWins" id="editWins" value=""><br>
+	Change total games to: <input type="text" name="editTotalGames" id="editTotalGames" value=""><br>
+	Change ranking to: <input type="text" name="editRanking" id="editRanking" value=""><br>
+	<input type="hidden" name="updateForm" id="updateForm" value="true">
+	<input type="submit" value="Update User"><br>
+
+	<br>
+	<h>Logout When Finished</h><br>
 	<form onsubmit=true action="adminstaff.php" method="get"
-	name="f2" id="f2">
+	name="f4" id="f4">
 	<input type="hidden" name="logout" id="logout" value="true">
 	<input type="submit" value="Logout"><br>
 	</form>
