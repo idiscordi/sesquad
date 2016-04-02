@@ -19,6 +19,6 @@ public class duck implements Comparable<duck>{
 	public int compareTo(duck arg0) {
 		if(this.rating == arg0.rating)
 			return 0;
-			return this.rating - arg0.rating;
+		return this.rating - arg0.rating;
 	}
 }
