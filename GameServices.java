@@ -62,6 +62,8 @@ public class GameServices implements Runnable{
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			return "error:join:exception";
+		}
+	}
 	
 	public static String leave(String username){
 		try{
