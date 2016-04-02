@@ -27,6 +27,10 @@ class ViewController: UIViewController {
     @IBAction func LogoutTapped(sender: UIButton) {
         self.performSegueWithIdentifier("goto_login", sender: self)
     }
+    
+    @IBAction func PlayGameTapped(sender: UIButton) {
+        self.performSegueWithIdentifier("goto_GameState", sender: self)
+    }
 
 
 }
