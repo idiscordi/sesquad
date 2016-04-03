@@ -19,15 +19,18 @@ public class Game{
 	public void putPiece(int turn, char[][] grid) {
 		//Method to take turns/ put pieces
 		turn = 1;
-		turn = turn * -1;
+		//turn = turn * -1;
 		
 		char P1piece ="";
 		char P2piece = "";
+		
 		if (turn == 1) {
 			P1piece = 'O';
+			turn = turn * -1;
 		}
 		else {
 			P2piece = 'X';
+			turn = turn * -1;
 		}
 	}
 	
