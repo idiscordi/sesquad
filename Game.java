@@ -36,5 +36,11 @@ public class Game{
 	
 	public String ValidMove(String gamemove) {
 		//Need to figure out how to check for Boundaries
+		//Named x,y but maybe undeclare variables (New name needed)
+		if ((x <= 0 && x > grid.length) && (y <= 0 && y > grid.length) {
+			return "failed:Out of Bounds";
+		}
+		else
+			return "success:move complete";
 	}
 }
