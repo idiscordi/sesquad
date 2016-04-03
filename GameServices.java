@@ -4,7 +4,7 @@
 import java.util.*;
 public class GameServices implements Runnable{
 	
-	private final static int loopwait = 100;
+	private final static int loopwait = 50;
 	private Thread t;
 	private String name;
 	private static ArrayList<duck> line;
