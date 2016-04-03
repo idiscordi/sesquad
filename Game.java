@@ -7,7 +7,7 @@ public class Game{
 	private String user2;
 	private String gid;
 	
-	public class Game(String username1, String username2, String gameid){
+	public Game(String username1, String username2, String gameid){
 		//Method to keep track of players
 		user1 = username1;
 		user2 = username2;
