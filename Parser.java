@@ -24,19 +24,19 @@ public class Parser {
 			}
 			//join matchmaking command "findmatch:username"
 			else if ((commandarr[0] == "findmatch") && (commandarr.length >= 2)){
-			//	output = matchmaking.join(commandarr[1]);		
+				output = GameServices.join(commandarr[1]);		
 			}
 			//exit matchmaking command "leavematch:username"
 			else if ((commandarr[0] == "leavematch") && (commandarr.length >= 2)){
-			//	output = matchmaking.leave(commandarr[1]);
+				output = GameServices.leave(commandarr[1]);
 			}
 			//get game state "getstate:username:gameid"
 			else if ((commandarr[0] == "getstate") && (commandarr.length >= 3)){
-			//	output = matchmaking.getstate(commandarr[2], commandarr[1]);
+			//	output = GameServices.getstate(commandarr[2], commandarr[1]);
 			}
 			//make move "gamemove:username:gameid:xcord,ycord:xcord,ycord: ..."
 			else if ((commandarr[0] == "gamemove") && (commandarr.length >= 4)){
-			//	output = class.makemove(commandarr);
+			//	output = GameServices.makemove(commandarr);
 			}
 			// template
 			/*
