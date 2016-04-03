@@ -2,8 +2,12 @@ import java.lang.String;
 import java.io.*;
 
 public class Game{
-	private static char[][] grid = new char[3][3];
-	public String players(String username1, String username2, String gameid){
+	private char[][] grid = new char[3][3];
+	private String user1;
+	private String user2;
+	private String gid;
+	
+	public class Game(String username1, String username2, String gameid){
 		//Method to keep track of players
 		String user1 = username1;
 		String user2 = username2;
