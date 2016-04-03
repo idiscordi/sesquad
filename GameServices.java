@@ -4,6 +4,7 @@
 import java.util.*;
 public class GameServices implements Runnable{
 	
+	private final static int loopwait = 100;
 	private Thread t;
 	private String name;
 	private static ArrayList<duck> line;
@@ -16,6 +17,7 @@ public class GameServices implements Runnable{
 		name = reference;
 	}
 	
+	//thread methods
 	@Override
 	public void run() {
 		try {
@@ -24,7 +26,7 @@ public class GameServices implements Runnable{
 					Collections.sort(line);
 					this.match();
 				}
-				Thread.sleep(1000);
+				Thread.sleep(loopwait);
 			}
 		} catch (Exception e) {
 			 System.out.println(e.toString());
@@ -39,33 +41,42 @@ public class GameServices implements Runnable{
 	}
 
 	private void match(){
-		 {
-			try {
+		try {
+			synchronized (line) {
 				Iterator<duck> iterator = line.iterator();
 				duck prev = null;
 				duck curr = null;
-				if(iterator.hasNext())
+				duck goose = new duck(":", "9999999");
+				ArrayList<String> toRemove = new ArrayList<String>(0);
+				if (iterator.hasNext())
 					prev = iterator.next();
-				while(iterator.hasNext()){
+				while (iterator.hasNext()) {
 					curr = iterator.next();
-					//logic for creating a game subject to change
-					if((prev.rating - curr.rating) <= Integer.max(prev.wait, curr.wait)){
-						synchronized (games){
-						//TODO create game instance waiting on game object
-						//TODO notify players of game id
+					//logic for matching players subject to change
+					if ((prev.rating - curr.rating) <= Integer.max(prev.wait, curr.wait)) {
+						synchronized (games) {
+							//TODO create game instance waiting on game object
 							games.add(prev.name + curr.name);
+							
 						}
-						//remove players from line
-						this.remove(prev.name);
-						this.remove(curr.name);
+						//set players to be removed
+						toRemove.add(prev.name);
+						toRemove.add(curr.name);
+						curr = goose;
 					}
+					prev = curr;
 				}
-			} catch (Exception e) {
-				System.out.println(e.toString());
+				//remove all matched players from the line
+				if(toRemove.size() > 0)
+					for (int i = 0; i <= toRemove.size() - 1; i++)
+						this.remove(toRemove.get(i));
 			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
 	}
 
+	//user command methods
 	public static String join(String username){
 		try {
 			//TODO get user rating from DBhandler waiting on DBhandler
@@ -86,13 +97,11 @@ public class GameServices implements Runnable{
 		try{
 			synchronized (line) {
 				Iterator<duck> iterator = line.iterator();
-				int i = 0;
 				while(iterator.hasNext()){
 					if (iterator.next().name == username){
-						line.remove(i);
+						iterator.remove();
 						return "success:leave:"+username;
 					}
-					i++;
 				}
 				return "failed:leave:notinline:"+username;
 			}
@@ -102,6 +111,13 @@ public class GameServices implements Runnable{
 		}
 	}
 	
+	public static String inGame(String username){
+		if (GameServices.getgames().contains(username))
+			return "success:inGame:"+ username;
+			return "failed:inGame:"+ username;
+	}
+	
+	//internal and testing methods
 	private void remove(String username){
 		try{
 			synchronized (line) {
@@ -113,7 +129,7 @@ public class GameServices implements Runnable{
 				}
 			}
 		} catch (Exception e) {
-		System.out.println(e.toString());
+			System.out.println(e.toString());
 		}
 	}
 	
