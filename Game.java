@@ -9,9 +9,9 @@ public class Game{
 	
 	public class Game(String username1, String username2, String gameid){
 		//Method to keep track of players
-		String user1 = username1;
-		String user2 = username2;
-		String gid = gameid;
+		user1 = username1;
+		user2 = username2;
+		gid = gameid;
 	}
 	
 	/*public int getNextMove(int turn){
@@ -34,6 +34,20 @@ public class Game{
 		}
 		else {
 			P2piece = 'X';
+			turn = turn * -1;
+		}
+	}
+	
+	public String putPieceV2(int turn) {
+		//Edit method, char[][] grid may have issues
+		turn = 1;
+	
+		if (turn == 1) {
+			return "user1 turn";
+			turn = turn * -1;
+		}
+		else {
+			return "user2 turn";
 			turn = turn * -1;
 		}
 	}
