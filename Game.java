@@ -21,8 +21,8 @@ public class Game{
 		turn = 1;
 		//turn = turn * -1;
 		
-		char P1piece ="";
-		char P2piece = "";
+		char P1piece ='';
+		char P2piece = '';
 		
 		if (turn == 1) {
 			P1piece = 'O';
@@ -40,7 +40,8 @@ public class Game{
 		if ((x < 0 && x > grid.length) && (y < 0 && y > grid.length) {
 			return "failed:Out of Bounds";
 		}
-		else
+		else {
 			return "success:move complete";
+		}
 	}
 }
