@@ -33,10 +33,12 @@ class ServerComms
 	
 	public static void main (String args[])
 	{
-		
 		//TODO: Accept many communications, this is single blocking right now
 		try
 		{
+			GameServices matchmaking = new GameServices("test");
+			matchmaking.start();
+			
 			ServerSocket listener = new ServerSocket(55000);
 			//while im not ordered to shutdown
 			while(!shutdown)
