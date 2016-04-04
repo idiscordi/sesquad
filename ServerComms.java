@@ -19,7 +19,7 @@ import java.net.*;
 class ServerComms
 {
 	//to kill server
-	static boolean shutdown = false;
+	public static boolean shutdown = false;
 	//e.g. java ServerComms would run without console printlns, java ServerComms -v would be verbose mode w/ outputs
 	//turn me on to get console messages, off to kill verbose, could do this through CLI args later
 	static boolean debug = true;
