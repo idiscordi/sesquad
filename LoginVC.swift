@@ -29,7 +29,58 @@ class LoginVC: UIViewController {
         let userUsername = txtUsername.text;
         let userPassword = txtPassword.text;
         
-        //if(userUsername!.isEmpty || userPassword!.isEmpty){return;}
+        let userUsernameStored = NSUserDefaults.standardUserDefaults().stringForKey("userUsername");
+        let userPasswordStored = NSUserDefaults.standardUserDefaults().stringForKey("userPassword");
+        
+        if(userUsernameStored == userUsername && userPasswordStored == userPassword){
+            //if(userPasswordStored == userPassword){
+                //Login successfull
+            let alert1 = UIAlertView();
+            alert1.title = "Alert";
+            alert1.message = "Login Successfull";
+            alert1.addButtonWithTitle("Continue");
+            alert1.show();
+                
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
+                NSUserDefaults.standardUserDefaults().synchronize();
+                self.dismissViewControllerAnimated(true, completion: nil);
+            //}
+            
+        }
+        
+        if(userUsername!.isEmpty || userPassword!.isEmpty){
+            let alert5 = UIAlertView();
+            alert5.title = "Alert";
+            alert5.message = "All fields must be filled!";
+            alert5.addButtonWithTitle("Ok");
+            alert5.show();
+            
+            return;
+        }
+
+        
+        if(userUsernameStored != userUsername){
+            let alert2 = UIAlertView();
+            alert2.title = "Warning";
+            alert2.message = "Username does not match!";
+            alert2.addButtonWithTitle("Try Again");
+            alert2.show();
+            
+            return;
+        }
+        
+        if(userPasswordStored != userPassword){
+            let alert3 = UIAlertView();
+            alert3.title = "Warning";
+            alert3.message = "Password does not match!";
+            alert3.addButtonWithTitle("Try Again");
+            alert3.show();
+            
+            return;
+        }
+        
+        
+        
         
         
         
@@ -38,15 +89,8 @@ class LoginVC: UIViewController {
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData(("poop\n" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
-        //let myURL = NSURL(string: "uaf132992.ddns.uark.edu");
-        //let request = NSMutableURLRequest(URL: myURL!);
-        
-        //request.HTTPMethod = "POST";
-        
-        
-        //let postString = "username=\(userUsername)&password=\(userPassword)";
-        //request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        file.writeData(("Login Success\n" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+       
         
         let serverResponse = file.readDataToEndOfFile()
         
@@ -64,16 +108,5 @@ class LoginVC: UIViewController {
         
     }
     
-   
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

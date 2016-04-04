@@ -47,27 +47,35 @@ class SignupVC: UIViewController {
             displayAlertMssg("Passwords do not match!");
             return;
         }
-        //func storeData(){
+        //*******************************Test without server*******************************************//
+        //store data locally
+        NSUserDefaults.standardUserDefaults().setObject(userUsername, forKey: "userUsername");
+        NSUserDefaults.standardUserDefaults().setObject(userPassword, forKey: "userPassword");
+        NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail");
+        NSUserDefaults.standardUserDefaults().synchronize();
+        
+        //*******************************Test without server************************************//
             
         //store data
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((" poop\n" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((" Sign up success\n" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
         
         let serverResponse = file.readDataToEndOfFile()
         
         
         print(NSString(data: serverResponse, encoding: NSUTF8StringEncoding)!)
         
+        //Sending user data to server side
         
         
         
         //Display alert message with confirmation
-        var someAlert = UIAlertController(title:"Alert", message:"Registration was successful!", preferredStyle:UIAlertControllerStyle.Alert);
+        let someAlert = UIAlertController(title:"Alert", message:"Registration was successful!", preferredStyle:UIAlertControllerStyle.Alert);
         
-        let okAction = UIAlertAction(title:"ok", style:UIAlertActionStyle.Default){action in
+        let okAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.Default){action in
             self.dismissViewControllerAnimated(true, completion:nil);
             
         }
@@ -78,9 +86,9 @@ class SignupVC: UIViewController {
    
     
     func displayAlertMssg(userMessage:String ){
-        var someAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert);
+        let someAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert);
         
-        let okAction = UIAlertAction(title:"ok", style:UIAlertActionStyle.Default, handler:nil);
+        let okAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.Default, handler:nil);
         
         someAlert.addAction(okAction);
         
@@ -92,14 +100,6 @@ class SignupVC: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
