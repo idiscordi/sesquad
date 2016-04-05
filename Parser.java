@@ -6,9 +6,9 @@ public class Parser {
 	public static String Execute(String input){
 		try {
 			String output = "";
-			while(output.contains("::")){
-				output.replace("::", ":");
-			}
+			//while(input.contains("::")){
+			//	input.replace("::", ":");
+			//}
 			String[] commandarr = input.split(":");
 			//login command "login:username:password"
 			if ((commandarr[0] == "login") && (commandarr.length >= 3)){
@@ -34,17 +34,13 @@ public class Parser {
 			else if ((commandarr[0] == "ingame") && (commandarr.length >= 2)){
 				output = GameServices.inGame(commandarr[1]);		
 			}
-			//exit matchmaking command "leavematch:username"
-			else if ((commandarr[0] == "leavematch") && (commandarr.length >= 2)){
-				output = GameServices.leave(commandarr[1]);
-			}
 			//get game state "getstate:username:gameid"
 			else if ((commandarr[0] == "getstate") && (commandarr.length >= 3)){
 			//	output = GameServices.getstate(commandarr[2], commandarr[1]);
 			}
 			//make move "gamemove:username:gameid:xcord,ycord:xcord,ycord: ..."
 			else if ((commandarr[0] == "gamemove") && (commandarr.length >= 4)){
-			//	output = GameServices.makemove(commandarr);
+				output = GameServices.gameMove(commandarr[1], commandarr[2], commandarr[3]);
 			}
 			// template
 			/*
