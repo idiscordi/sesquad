@@ -53,7 +53,7 @@ public class GameServices implements Runnable{
 				while (iterator.hasNext()) {
 					curr = iterator.next();
 					//logic for matching players subject to change
-					if ((prev.rating - curr.rating) <= Integer.max(prev.wait, curr.wait)) {
+					if ((prev.rating - curr.rating) <= Math.max(prev.wait, curr.wait)) {
 						synchronized (games) {
 							//TODO create game instance waiting on game object
 							games.add(prev.name + curr.name);
