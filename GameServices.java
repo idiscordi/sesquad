@@ -8,12 +8,13 @@ public class GameServices implements Runnable{
 	private Thread t;
 	private String name;
 	private static ArrayList<duck> line;
-	private static ArrayList<String> games;
-	//private static game[] games; waiting on game object
+	private static ArrayList<Game> games;
+	private static int gamecounter;
 	
 	GameServices(String reference){
 		line = new ArrayList<duck>(0);
-		games = new ArrayList<String>(0);
+		games = new ArrayList<Game>(0);
+		gamecounter = 0;
 		name = reference;
 	}
 	
@@ -56,7 +57,7 @@ public class GameServices implements Runnable{
 					if ((prev.rating - curr.rating) <= Math.max(prev.wait, curr.wait)) {
 						synchronized (games) {
 							//TODO create game instance waiting on game object
-							games.add(prev.name + curr.name);
+							games.add(new Game(prev.name, curr.name, Integer.toString(gamecounter)));
 							
 						}
 						//set players to be removed
@@ -117,6 +118,24 @@ public class GameServices implements Runnable{
 			return "failed:inGame:"+ username;
 	}
 	
+	public static String gameMove(String username, String Gameid, String moves){
+		try {
+			String temp[] = new String[0];
+			synchronized (games){
+				if (getGamebyId(Gameid) != -1){
+					temp = games.get(getGamebyId(Gameid)).getGameData().split(":");
+					if(((temp[2] == username) && (temp[4] == "p1")) || ((temp[2] == username) && (temp[4] == "p2")))
+						return games.get(getGamebyId(Gameid)).validateMove(moves.split(","));
+					return "error:gameMove:not this user's turn";
+				}
+				return "error:gameMove:game not found";
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return "error:gameMove:exception";
+		}
+	}
+	
 	//internal and testing methods
 	private void remove(String username){
 		try{
@@ -151,17 +170,37 @@ public class GameServices implements Runnable{
 	
 	public static String getgames(){
 		try{
+			Game temp;
 			String out = "games";
 			synchronized (games) {
-				Iterator<String> iterator = games.iterator();
+				Iterator<Game> iterator = games.iterator();
 				while(iterator.hasNext()){
-					out = out + ":" +iterator.next();
+					temp = iterator.next();
+					out = out + ":" + temp.getPlayerOne() + ":" + temp.getPlayerTwo();
 				}
 			}
 			return out;
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			return "error:getgames:exception";
+		}
+	}
+
+	private static int getGamebyId (String Gameid){
+		try {
+			int i = 0;
+			synchronized (games){
+				Iterator<Game> iterator = games.iterator();
+				while(iterator.hasNext()){
+					if (Gameid == iterator.next().getGameID())
+						return i;
+					i++;				
+				}
+			}
+			return -1;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return -1;
 		}
 	}
 }
