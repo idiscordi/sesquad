@@ -112,20 +112,19 @@ public class Game{
 		{
 			return "failed:invalid move\n";
 		}
-		else if
+		else if (p1turn)
 		{
-			if(p1turn)
-			{
+			
 				grid[x][y] = 'O';
 				p1turn = !p1turn;
-			}
-			else
-			{
-				grid[x][y] = 'X';
-				p1turn = !p1turn;
-			}
-			return "success:move complete\n";
 		}
+		else
+		{
+			grid[x][y] = 'X';
+			p1turn = !p1turn;
+		}
+
+		return "success:move complete\n";
 		
 	}
 	
