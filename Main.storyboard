@@ -111,27 +111,20 @@
                                 <rect key="frame" x="47" y="346" width="55" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3da-tR-fSW">
-                                <rect key="frame" x="0.0" y="430" width="320" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Quit Game">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="QuitGameTapped:" destination="koz-6D-gSc" eventType="touchUpInside" id="1K1-mH-XXD"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ie0-YJ-UBZ">
-                        <barButtonItem key="leftBarButtonItem" title="Connect" id="cZN-Nd-IdU">
+                        <barButtonItem key="leftBarButtonItem" title="Find Match" id="cZN-Nd-IdU">
                             <connections>
-                                <action selector="ConnectTapped:" destination="koz-6D-gSc" id="kiG-VV-lOw"/>
+                                <action selector="FindMatchTapped:" destination="koz-6D-gSc" id="9Bi-Xg-K38"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Find Match" id="cDJ-5X-Iff"/>
+                        <barButtonItem key="rightBarButtonItem" title="QuitGame" id="cDJ-5X-Iff">
+                            <connections>
+                                <action selector="QuitGameTapped:" destination="koz-6D-gSc" id="NUR-vw-EUK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="400"/>
                 </viewController>
