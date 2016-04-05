@@ -113,9 +113,23 @@ public class GameServices implements Runnable{
 	}
 	
 	public static String inGame(String username){
-		if (GameServices.getgames().contains(username))
-			return "success:inGame:"+ username;
-			return "failed:inGame:"+ username;
+		try {
+			Game temp;
+			synchronized (games){
+				Iterator<Game> iterator = games.iterator();
+				while(iterator.hasNext()){
+					temp = iterator.next();
+					if (username == temp.getPlayerOne())
+						return "success:ingame:" + username + ":" + temp.getGameID() + ":p1";
+					if (username == temp.getPlayerTwo())
+						return "success:ingame:" + username + ":" + temp.getGameID() + ":p2";
+				}
+			}
+			return "failed:ingame:" + username;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return "failed:ingame:exception";
+		}
 	}
 	
 	public static String gameMove(String username, String Gameid, String moves){
@@ -187,6 +201,7 @@ public class GameServices implements Runnable{
 	}
 
 	private static int getGamebyId (String Gameid){
+
 		try {
 			int i = 0;
 			synchronized (games){
@@ -203,4 +218,5 @@ public class GameServices implements Runnable{
 			return -1;
 		}
 	}
+
 }
