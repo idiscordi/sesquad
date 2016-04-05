@@ -11,7 +11,7 @@ public class Parser {
 			//}
 			String[] commandarr = input.split(":");
 			//login command "login:username:password"
-			if ((commandarr[0] == "login") && (commandarr.length >= 3)){
+			if ((commandarr[0].equals("login")) && (commandarr.length >= 3)){
 				Login loginInfo = new Login(commandarr[1],commandarr[2]);
 				String loginResults = loginInfo.trylogin();
 				output = loginResults;
