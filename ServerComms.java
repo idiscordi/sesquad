@@ -67,9 +67,9 @@ class ServerComms
 					output.replace("\n","");
 				}
 				//respond with something
-				outputData.writeBytes("Server received your message as: " + input + "\n");
+				//outputData.writeBytes("Server received your message as: " + input + "\n");
 				if ((output != null) && (output != "")){
-					outputData.writeBytes("Server returned the message: " + output + "\n");
+					outputData.writeBytes(output + "\n");
 				} else {
 					outputData.writeBytes("Server returned nothing \n");
 				}
