@@ -7,7 +7,7 @@ public class Parser {
 		try {
 			String output = "";
 			while(input.contains("::")){
-				input.replace("::", ":");
+			 	input.replace("::", ":");
 			}
 			String[] commandarr = input.split(":");
 			//login command "login:username:password"
