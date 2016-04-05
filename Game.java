@@ -6,6 +6,9 @@ public class Game{
 	private String user1;
 	private String user2;
 	private String gid;
+	//boolean toggle, 2 player game, any more is a waste of memory
+	public boolean p1turn = true;
+	//private String[] commandArr;
 	
 	public Game(String username1, String username2, String gameid){
 		//Method to keep track of players
@@ -14,19 +17,51 @@ public class Game{
 		gid = gameid;
 	}
 	
+	public String getGameID()
+	{
+		return gid;
+	}
+	
+	public String getPlayerOne()
+	{
+		return user1;
+	}
+	
+	public String getPlayerTwo()
+	{
+		return user2;
+	}
+	
+	//call this to receive a return string to pass back to client in format of
+	//gamedata:gameID:player1username:player2username:currentplayerturn
+	public String getGameData()
+	{
+		String temp;
+		
+		if(p1turn)
+			temp = "p1";
+		else
+			temp = "p2";
+		
+		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + "\n");
+	}
+	
 	/*public int getNextMove(int turn){
 		//Method to Determine gamemoves
 		turn = 1;
 		turn = turn * -1; // Each turn gives a player 1, -1, 1,...
 	}*/
 	
-	public void putPiece(int turn, char[][] grid) {
+	//this method seems unnecessary for the current needs, see validateMove()
+	/* public void putPiece(int turn, char[][] grid) 
+	  {
+	 
 		//Method to take turns/ put pieces
 		turn = 1;
 		//turn = turn * -1;
 		
-		char P1piece ='';
-		char P2piece = '';
+		char P1piece ='O';
+		char P2piece = 'X';
 		
 		if (turn == 1) {
 			P1piece = 'O';
@@ -36,29 +71,54 @@ public class Game{
 			P2piece = 'X';
 			turn = turn * -1;
 		}
-	}
+	} /*
 	
-	public String putPieceV2(int turn) {
+	
+	//dont think this is needed either, plus turn would be destroyed after each run
+	/*
+	public String putPieceV2(int turn) 
+	{
 		//Edit method, char[][] grid may have issues
 		turn = 1;
 	
-		if (turn == 1) {
+		if (turn == 1) 
+		{
+			turn = turn * -1;
 			return "user1 turn";
-			turn = turn * -1;
+			
 		}
-		else {
+		else 
+		{
+			turn = turn * -1;
 			return "user2 turn";
-			turn = turn * -1;
+			
 		}
-	}
+	} */
 	
-	public String ValidMove(String gamemove) {
-		//Need to figure out how to check for Boundaries
-		//Named x,y but maybe undeclare variables (New name needed)
-		if ((x < 0 && x > grid.length) && (y < 0 && y > grid.length) {
-			return "failed:Out of Bounds";
+	//handles move validation.  if valid places token into array and returns success
+	public String validateMove(String[] gamemove) 
+	{
+		String temp = gamemove[1];
+		String[] tempArr = temp.split(",");
+		int x = Integer.parseInt(tempArr[0]);
+		int y = Integer.parseInt(tempArr[1]);
+		
+		if ((x < 0 && x > 2) || (y < 0 && y > 2)) 
+		{
+			return "failed:invalid move";
 		}
-		else {
+		else 
+		{
+			if(p1turn)
+			{
+				grid[x][y] = 'O';
+				p1turn = !p1turn;
+			}
+			else
+			{
+				grid[x][y] = 'X';
+				p1turn = !p1turn;
+			}
 			return "success:move complete";
 		}
 	}
