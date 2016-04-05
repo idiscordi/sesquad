@@ -6,9 +6,9 @@ public class Parser {
 	public static String Execute(String input){
 		try {
 			String output = "";
-			//while(input.contains("::")){
-			//	input.replace("::", ":");
-			//}
+			while(input.contains("::")){
+				input.replace("::", ":");
+			}
 			String[] commandarr = input.split(":");
 			//login command "login:username:password"
 			if ((commandarr[0].equals("login")) && (commandarr.length >= 3)){
