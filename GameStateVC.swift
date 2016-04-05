@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class GameStateVC: UIViewController {
 
@@ -21,27 +22,35 @@ class GameStateVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func ConnectTapped(sender: UIBarButtonItem) {
-        
+    @IBAction func FindMatchTapped(sender: AnyObject) {
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
+        let findmatch = "findmatch:";
+        let newline = "\n";
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((" Connect Request\n" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((findmatch + uname + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
         
         let serverResponse = file.readDataToEndOfFile()
+        let first = Array(arrayLiteral: serverResponse)[0]
         
+        if (first == "f"){
+            
+            sleep(1);
+            file.writeData((findmatch as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+            
+        }
         
-        print(NSString(data: serverResponse, encoding: NSUTF8StringEncoding)!)
-
     }
-
-    @IBAction func QuitGameTapped(sender: UIButton) {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn");
-        NSUserDefaults.standardUserDefaults().synchronize();
+    
+    
+    @IBAction func LogoutTapped(sender: AnyObject) {
         
-        self.dismissViewControllerAnimated(true, completion: nil);
+        
+        
     }
+    
+
    
 
 }

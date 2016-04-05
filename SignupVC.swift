@@ -34,6 +34,9 @@ class SignupVC: UIViewController {
         let userConfirmPassword = txtConfirmPassword.text;
         let userEmail = txtEmail.text;
         
+        uname = userUsername!;
+        pword = userPassword!;
+        
         //check for empty fields
         if(userUsername!.isEmpty || userPassword!.isEmpty || userConfirmPassword!.isEmpty || userEmail!.isEmpty){
             //Display alert message
@@ -48,11 +51,11 @@ class SignupVC: UIViewController {
             return;
         }
         
+        
+        
+        
         //Sending user data to server side
         
-      
-        
-            
             
         //*******************************Test without server*******************************************//
         //store data locally
@@ -71,7 +74,7 @@ class SignupVC: UIViewController {
         let newline = "\n";
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((createaccount + colon + userUsername! + colon + userPassword! + colon + userEmail! + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((createaccount + userUsername! + colon + userPassword! + colon + userEmail! + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
         
         
         let serverResponse = file.readDataToEndOfFile()

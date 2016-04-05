@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+    var uname = "";
+    var pword = "";
+    
+
+
 class LoginVC: UIViewController {
     
     @IBOutlet weak var txtUsername: UITextField!
@@ -28,6 +34,9 @@ class LoginVC: UIViewController {
     @IBAction func signinTapped(sender: AnyObject) {
         let userUsername = txtUsername.text;
         let userPassword = txtPassword.text;
+        
+        uname = userUsername!;
+        pword = userPassword!;
         
         
         let userUsernameStored = NSUserDefaults.standardUserDefaults().stringForKey("userUsername");
@@ -94,12 +103,12 @@ class LoginVC: UIViewController {
         //read data
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
-        let createaccount = "createaccount:";
+        let login = "login:";
         let colon = ":";
         let newline = "\n";
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((createaccount + colon + userUsername! + colon + userPassword! + colon + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((login + userUsername! + colon + userPassword! + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
        
         
         let serverResponse = file.readDataToEndOfFile()
