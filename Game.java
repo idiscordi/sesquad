@@ -105,7 +105,7 @@ public class Game{
 		
 		if ((x < 0 || x > 2) || (y < 0 || y > 2)) 
 		{
-			return "failed:invalid move\n";
+			return "failed:invalid move";
 		}
 		else 
 		{
@@ -119,7 +119,13 @@ public class Game{
 				grid[x][y] = 'X';
 				p1turn = !p1turn;
 			}
-			return "success:move complete\n";
+			return "success:move complete";
+		}
+		
+		//Check if spot is taken
+		if (grid[x][y] == 'O' || grid[x][y] == 'X')
+		{
+			return "failed:spot taken"
 		}
 	}
 }
