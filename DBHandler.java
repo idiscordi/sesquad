@@ -18,13 +18,13 @@ public final class DBHandler {
 		
 				if(dbpassword.equals(password)) {
 					conn.close();
-					return "success:user and pass correct";
+					return "success:user and pass correct\n";
 				}
 			}
 		} catch (Exception e) {
 			System.err.println(e);
 		}
-		return "failed:login information does not match";
+		return "failed:login information does not match\n";
 	}
 
     public static String DBNewAcc(String username, String password, String email) {
@@ -59,7 +59,7 @@ public final class DBHandler {
 					//System.out.println("close conn\n");
 					conn.close();
 					//System.out.println("return fail on email\n");
-					return "failed:email is Taken";
+					return "failed:email is Taken\n";
 				}
 			}
 		} catch (Exception e) {
@@ -80,7 +80,7 @@ public final class DBHandler {
 				if(dbusername.equals(username))
 				{
 					conn.close();
-					return "failed:username is Taken";
+					return "failed:username is Taken\n";
 				}
 			}
 			
@@ -97,6 +97,6 @@ public final class DBHandler {
 			System.err.println(e);
 		}
 		
-		return "success:user account created";
+		return "success:user account created\n";
 	}	
 }
