@@ -17,29 +17,29 @@ public class Parser {
 				output = loginResults;
 			}
 			//account creation command "createaccount:username:password:email"
-			else if ((commandarr[0] == "createaccount") && (commandarr.length >= 4)){
+			else if ((commandarr[0].equals("createaccount")) && (commandarr.length >= 4)){
 				Login accountInfo = new Login(commandarr[1],commandarr[2]);
 				String accountResults = accountInfo.newaccount(commandarr[3]);
 				output = accountResults;
 			}
 			//join matchmaking command "findmatch:username"
-			else if ((commandarr[0] == "findmatch") && (commandarr.length >= 2)){
+			else if ((commandarr[0].equals("findmatch")) && (commandarr.length >= 0)){
 				output = GameServices.join(commandarr[1]);		
 			}
 			//exit matchmaking command "leavematch:username"
-			else if ((commandarr[0] == "leavematch") && (commandarr.length >= 2)){
+			else if ((commandarr[0].equals("leavematch")) && (commandarr.length >= 2)){
 				output = GameServices.leave(commandarr[1]);
 			}
 			//check if in game command "ingame:username"
-			else if ((commandarr[0] == "ingame") && (commandarr.length >= 2)){
+			else if ((commandarr[0].equals("ingame")) && (commandarr.length >= 2)){
 				output = GameServices.inGame(commandarr[1]);		
 			}
 			//get game state "getstate:username:gameid"
-			else if ((commandarr[0] == "getstate") && (commandarr.length >= 3)){
+			else if ((commandarr[0].equals("getstate")) && (commandarr.length >= 3)){
 			//	output = GameServices.getstate(commandarr[2], commandarr[1]);
 			}
 			//make move "gamemove:username:gameid:xcord,ycord:xcord,ycord: ..."
-			else if ((commandarr[0] == "gamemove") && (commandarr.length >= 4)){
+			else if ((commandarr[0].equals("gamemove")) && (commandarr.length >= 4)){
 				output = GameServices.gameMove(commandarr[1], commandarr[2], commandarr[3]);
 			}
 			// template
@@ -52,8 +52,8 @@ public class Parser {
 			else{
 				output = "error:invalid or missing values:" + commandarr[0];
 			}
-				if (ServerComms.debug)
-					System.out.println(commandarr[0] + " returned:" + output);
+			if (ServerComms.debug)
+				System.out.println(commandarr[0] + " returned:" + output);
 			return output;
 		} catch (Exception e) {
 			System.out.print("parser error" + e.toString());

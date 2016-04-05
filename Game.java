@@ -43,7 +43,7 @@ public class Game{
 		else
 			temp = "p2";
 		
-		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + "\n");
+		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp);
 	}
 	
 	/*public int getNextMove(int turn){
@@ -96,21 +96,21 @@ public class Game{
 	} */
 	
 	//handles move validation.  if valid places token into array and returns success
-	public String validateMove(String[] gamemove) 
+	public String validateMove(String gamemove) 
 	{
-		String temp = gamemove[1];
-		String[] tempArr = temp.split(",");
+		//String temp = gamemove[1];
+		String[] tempArr = gamemove.split(",");
 		int x = Integer.parseInt(tempArr[0]);
 		int y = Integer.parseInt(tempArr[1]);
 		
 		if ((x < 0 || x > 2) || (y < 0 || y > 2)) 
 		{
-			return "failed:" + gid + ":invalid move\n";
+			return "failed:" + gid + ":invalid move";
 		}
 		//Check if spot is taken
 		else if (grid[x][y] == 'O' || grid[x][y] == 'X')
 		{
-			return "failed:" + gid + ":invalid move\n";
+			return "failed:" + gid + ":invalid move";
 		}
 		else if (p1turn)
 		{
@@ -124,7 +124,7 @@ public class Game{
 			p1turn = !p1turn;
 		}
 
-		return "success:" + gid + ":move complete\n";
+		return "success:" + gid + ":move complete";
 		
 	}
 	

@@ -119,9 +119,9 @@ public class GameServices implements Runnable{
 				Iterator<Game> iterator = games.iterator();
 				while(iterator.hasNext()){
 					temp = iterator.next();
-					if (username == temp.getPlayerOne())
+					if (username.equals(temp.getPlayerOne()))
 						return "success:ingame:" + username + ":" + temp.getGameID() + ":p1";
-					if (username == temp.getPlayerTwo())
+					if (username.equals(temp.getPlayerTwo()))
 						return "success:ingame:" + username + ":" + temp.getGameID() + ":p2";
 				}
 			}
@@ -138,9 +138,9 @@ public class GameServices implements Runnable{
 			synchronized (games){
 				if (getGamebyId(Gameid) != -1){
 					temp = games.get(getGamebyId(Gameid)).getGameData().split(":");
-					if(((temp[2] == username) && (temp[4] == "p1")) || ((temp[2] == username) && (temp[4] == "p2")))
-						return games.get(getGamebyId(Gameid)).validateMove(moves.split(","));
-					return "error:gameMove:not this user's turn";
+					if(((temp[2].equals(username)) && (temp[4].equals("p1"))) || ((temp[3].equals(username)) && (temp[4].equals("p2"))))
+						return games.get(getGamebyId(Gameid)).validateMove(moves);
+					return "error:gameMove:not "+ username + ":should be " + temp[2];
 				}
 				return "error:gameMove:game not found";
 			}
@@ -207,7 +207,7 @@ public class GameServices implements Runnable{
 			synchronized (games){
 				Iterator<Game> iterator = games.iterator();
 				while(iterator.hasNext()){
-					if (Gameid == iterator.next().getGameID())
+					if (Gameid.equals(iterator.next().getGameID()))
 						return i;
 					i++;				
 				}
