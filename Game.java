@@ -103,7 +103,7 @@ public class Game{
 		int x = Integer.parseInt(tempArr[0]);
 		int y = Integer.parseInt(tempArr[1]);
 		
-		if ((x < 0 && x > 2) || (y < 0 && y > 2)) 
+		if ((x < 0 || x > 2) || (y < 0 || y > 2)) 
 		{
 			return "failed:invalid move";
 		}
