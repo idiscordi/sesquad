@@ -47,6 +47,13 @@ class SignupVC: UIViewController {
             displayAlertMssg("Passwords do not match!");
             return;
         }
+        
+        //Sending user data to server side
+        
+      
+        
+            
+            
         //*******************************Test without server*******************************************//
         //store data locally
         NSUserDefaults.standardUserDefaults().setObject(userUsername, forKey: "userUsername");
@@ -59,16 +66,21 @@ class SignupVC: UIViewController {
         //store data
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
+        let createaccount = "createaccount:";
+        let colon = ":";
+        let newline = "\n";
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((" Sign up success\n" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((createaccount + colon + userUsername! + colon + userPassword! + colon + userEmail! + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
         
         let serverResponse = file.readDataToEndOfFile()
         
         
+        
         print(NSString(data: serverResponse, encoding: NSUTF8StringEncoding)!)
         
-        //Sending user data to server side
+       
         
         
         

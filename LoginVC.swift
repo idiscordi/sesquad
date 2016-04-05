@@ -29,9 +29,14 @@ class LoginVC: UIViewController {
         let userUsername = txtUsername.text;
         let userPassword = txtPassword.text;
         
+        
         let userUsernameStored = NSUserDefaults.standardUserDefaults().stringForKey("userUsername");
         let userPasswordStored = NSUserDefaults.standardUserDefaults().stringForKey("userPassword");
         
+        
+        
+        
+        //check to see if info matches
         if(userUsernameStored == userUsername && userPasswordStored == userPassword){
             //if(userPasswordStored == userPassword){
                 //Login successfull
@@ -57,7 +62,9 @@ class LoginVC: UIViewController {
             
             return;
         }
-
+        
+        
+       
         
         if(userUsernameStored != userUsername){
             let alert2 = UIAlertView();
@@ -79,7 +86,7 @@ class LoginVC: UIViewController {
             return;
         }
         
-        
+
         
         
         
@@ -87,17 +94,18 @@ class LoginVC: UIViewController {
         //read data
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
+        let createaccount = "createaccount:";
+        let colon = ":";
+        let newline = "\n";
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData(("Login Success\n" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((createaccount + colon + userUsername! + colon + userPassword! + colon + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
        
         
         let serverResponse = file.readDataToEndOfFile()
         
         print(NSString(data: serverResponse, encoding: NSUTF8StringEncoding)!)
 
-        
-        //check to see if info matches
         
         
         //login successful
