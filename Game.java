@@ -125,7 +125,7 @@ public class Game{
 		//Check if spot is taken
 		if (grid[x][y] == 'O' || grid[x][y] == 'X')
 		{
-			return "failed:spot taken"
+			return "failed:spot taken";
 		}
 	}
 }
