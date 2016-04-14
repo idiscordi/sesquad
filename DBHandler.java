@@ -99,4 +99,48 @@ public final class DBHandler {
 		
 		return "success:user account created";
 	}	
+    
+    public static String getDataByUser(String username)
+    {
+		try {
+			//System.out.println("\nAttempting driver load\n");
+			Class.forName("com.mysql.jdbc.Driver");
+			//System.out.println("\ndriver should have been loaded\n");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username = '" + username +"'");
+			conn.close();
+			String toReturn = "success:";
+			
+			while (rs.next()) 
+			{
+				 toReturn += rs.getString("wins") + ":";
+				 toReturn += rs.getString("totalgames") + ":";
+				 toReturn += rs.getString("ranking");
+			}
+			if (toReturn.equals("success:"))
+				return "failed:username not found";
+			else return toReturn;
+			
+		} catch (Exception e) 
+		{
+			System.err.println(e);
+			return "failed: something broke in handler";
+		}
+    }
+    
+    public static boolean incrementWinsByUser(String username)
+    {
+    	return false;
+    }
+    
+    public static boolean incrementTotalGamesByUser(String username)
+    {
+    	return false;
+    }
+    
+    public static boolean setRankingByUser(String username)
+    {
+    	return false;
+    }
 }
