@@ -108,7 +108,7 @@ class LoginVC: UIViewController {
         let newline = "\n";
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((login + userUsername! + colon + userPassword! + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((login + uname + colon + pword + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
        
         
         let serverResponse = file.readDataToEndOfFile()
@@ -122,6 +122,7 @@ class LoginVC: UIViewController {
         NSUserDefaults.standardUserDefaults().synchronize();
         
         self.dismissViewControllerAnimated(true, completion: nil);
+      //self.performSegueWithIdentifier("goto_home", sender: self)
         
     }
     

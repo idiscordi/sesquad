@@ -25,6 +25,7 @@ class TImageView: UIImageView {
             activated = true
 
         }
+        
     }
 
 
