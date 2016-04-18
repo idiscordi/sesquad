@@ -1,7 +1,4 @@
-
 public class Parser {
-
-	public Parser(String input) {}
 	
 	public static String Execute(String input){
 		try {
@@ -10,54 +7,59 @@ public class Parser {
 			 //	input.replace("::", ":");
 		//	}
 			String[] commandarr = input.split(":");
+			
 			//login command "login:username:password"
-			if ((commandarr[0].equals("login")) && (commandarr.length >= 3)){
-				Login loginInfo = new Login(commandarr[1],commandarr[2]);
-				String loginResults = loginInfo.trylogin();
-				output = loginResults;
+			if ((commandarr[0] == "login") && (commandarr.length >= 3)){
+				output = Login.trylogin(commandarr[1], commandarr[2]);
 			}
 			//account creation command "createaccount:username:password:email"
 			else if ((commandarr[0].equals("createaccount")) && (commandarr.length >= 4)){
-				Login accountInfo = new Login(commandarr[1],commandarr[2]);
-				String accountResults = accountInfo.newaccount(commandarr[3]);
-				output = accountResults;
+				output = Login.newaccount(commandarr[1],commandarr[2],commandarr[3]);
 			}
 			//join matchmaking command "findmatch:username"
-			else if ((commandarr[0].equals("findmatch")) && (commandarr.length >= 0)){
+			else if ((commandarr[0].equals("findmatch")) && (commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 				output = GameServices.join(commandarr[1]);		
 			}
 			//exit matchmaking command "leavematch:username"
-			else if ((commandarr[0].equals("leavematch")) && (commandarr.length >= 2)){
+			else if ((commandarr[0].equals("leavematch")) && (commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 				output = GameServices.leave(commandarr[1]);
 			}
 			//check if in game command "ingame:username"
-			else if ((commandarr[0].equals("ingame")) && (commandarr.length >= 2)){
+			else if ((commandarr[0].equals("ingame")) && (commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 				output = GameServices.inGame(commandarr[1]);		
 			}
 			//get game state "getstate:username:gameid"
-			else if ((commandarr[0].equals("getstate")) && (commandarr.length >= 3)){
+			else if ((commandarr[0].equals("getstate")) && (commandarr.length >= 3) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 			//	output = GameServices.getstate(commandarr[2], commandarr[1]);
 			}
 			//make move "gamemove:username:gameid:xcord,ycord:xcord,ycord: ..."
-			else if ((commandarr[0].equals("gamemove")) && (commandarr.length >= 4)){
+			else if ((commandarr[0].equals("gamemove")) && (commandarr.length >= 4) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 				output = GameServices.gameMove(commandarr[1], commandarr[2], commandarr[3]);
 			}
-			// template
+			//Description
+			else if ((commandarr[0] == "getdatabyuser") && (commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("success"))){
+				output = DBHandler.getDataByUser(commandarr[1]);
+			}
+			
 			/*
-		 	else if ((commandarr[0] == "command") && (commandarr.length >= 0)){
-			//	output = class.request(commandarr[x])
+			//Description
+		 	else if ((commandarr[0] == "command") && (commandarr.length >= x) && (Login.checklogin(commandarr[1]).startsWith("success"))){
+				output = class.request(commandarr[x])
 			}
 			*/
-			//default action
+			//default actions
+			else if((commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("failed"))){
+				output = Login.checklogin(commandarr[1]);
+			}
 			else{
-				output = "error:invalid or missing values:" + commandarr[0];
+				output = "failed:parser:invalid or missing values:" + commandarr[0];
 			}
 			if (ServerComms.debug)
 				System.out.println(commandarr[0] + " returned:" + output);
 			return output;
 		} catch (Exception e) {
 			System.out.print("parser error" + e.toString());
-			return "error:exception";
+			return "failed:exception";
 		}
 	}
 
