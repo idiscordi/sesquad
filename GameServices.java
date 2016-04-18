@@ -26,6 +26,7 @@ public class GameServices implements Runnable{
 				synchronized (line) {
 					Collections.sort(line);
 					this.match();
+					this.clearidle();
 				}
 				Thread.sleep(loopwait);
 			}
@@ -77,6 +78,21 @@ public class GameServices implements Runnable{
 		}
 	}
 
+	private void clearidle(){
+		try{
+			synchronized (games) {
+				Iterator<Game> iterator = games.iterator();
+				while(iterator.hasNext()){
+					if(!iterator.next().checkidle()){
+						iterator.remove();
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+	}
+	
 	//user command methods
 	public static String join(String username){
 		try {

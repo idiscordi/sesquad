@@ -6,6 +6,9 @@ public class Game{
 	private String user1;
 	private String user2;
 	private String gid;
+	
+	private final static int maxidle = 50;
+	private int idletime;
 	//boolean toggle, 2 player game, any more is a waste of memory
 	public boolean p1turn = true;
 	//private String[] commandArr;
@@ -15,6 +18,7 @@ public class Game{
 		user1 = username1;
 		user2 = username2;
 		gid = gameid;
+		idletime = 0;
 	}
 	
 	public String getGameID()
@@ -124,8 +128,18 @@ public class Game{
 			p1turn = !p1turn;
 		}
 
+		idletime = 0;
 		return "success:" + gid + ":move complete";
 		
 	}
-	
+
+	//increases idle time. returns false if idle time is to high
+	public boolean checkidle(){
+		if (idletime > maxidle){
+			//TODO add game termination function
+			return false;
+		}
+		idletime++;
+		return true;
+	}
 }
