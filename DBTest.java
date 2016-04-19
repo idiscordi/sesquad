@@ -35,6 +35,28 @@ public class DBTest {
 		System.out.println("Trying to create with with joe:joedog:joe@gmail.com\n");
 		response = DBHandler.DBNewAcc(name, pass, email);
 		System.out.println("Handlers sends back: " + response + "\n");
+		
+		if(DBHandler.incrementTotalGamesByUser("joe"))
+		{
+			System.out.println("Incremented Joe's total games by 1\n");
+		}
+		else
+			System.out.println("Failed on: Incrementing Joe's total games by 1\n");
+		
+		if(DBHandler.incrementWinsByUser("joe"))
+		{
+			System.out.println("Incremented Joe's wins by 1\n");
+		}
+		else
+			System.out.println("Failed on: Incrementing Joe's win by 1\n");
+		
+		if(DBHandler.setRankingByUser("joe", 37))
+		{
+			System.out.println("Set Joe's ranking to 37\n");
+		}
+		else
+			System.out.println("Failed on: Set Joe's ranking to 37\n");
+
 	}
 
 }
