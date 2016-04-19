@@ -57,7 +57,6 @@ public class GameServices implements Runnable{
 					//logic for matching players subject to change
 					if ((prev.rating - curr.rating) <= Math.max(prev.wait, curr.wait)) {
 						synchronized (games) {
-							//TODO create game instance waiting on game object
 							games.add(new Game(prev.name, curr.name, Integer.toString(gamecounter)));
 							
 						}
@@ -96,8 +95,10 @@ public class GameServices implements Runnable{
 	//user command methods
 	public static String join(String username){
 		try {
-			//TODO get user rating from DBhandler waiting on DBhandler
-			duck player = new duck(username, "100");
+			duck player = new duck(username, "-1");
+			String user[] = DBHandler.getDataByUser(username).split(":");
+			if (user.length >= 4)
+				player = new duck(username, user[3]);
 			if(player.rating < 0)
 				return "error:invalid rating:"+"0";
 			synchronized (line) {

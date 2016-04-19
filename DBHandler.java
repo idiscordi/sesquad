@@ -212,7 +212,7 @@ public final class DBHandler {
     	//return false;
     }
     
-    boolean toggleOnline(String username)
+    public static boolean toggleOnline(String username)
     {
     	try 
     	{

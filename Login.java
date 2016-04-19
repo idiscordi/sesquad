@@ -41,9 +41,8 @@ class Login implements Runnable{
 			userstatus curr = null;
 			while(iterator.hasNext()){
 				curr = iterator.next();
-				if(curr.idletime > maxidle){
+				if((curr.idletime > maxidle) && (DBHandler.toggleOnline(curr.username))){
 					iterator.remove();
-					//DBHandler.DBLogout(curr.username);
 				}
 			}
 			iterator = active.iterator();

@@ -37,13 +37,13 @@ public class Parser {
 				output = GameServices.gameMove(commandarr[1], commandarr[2], commandarr[3]);
 			}
 			//Description
-			else if ((commandarr[0] == "getdatabyuser") && (commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("success"))){
+			else if ((commandarr[0].equals("getdatabyuser")) && (commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 				output = DBHandler.getDataByUser(commandarr[1]);
 			}
 			
 			/*
 			//Description
-		 	else if ((commandarr[0] == "command") && (commandarr.length >= x) && (Login.checklogin(commandarr[1]).startsWith("success"))){
+		 	else if ((commandarr[0].equals("command")) && (commandarr.length >= x) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 				output = class.request(commandarr[x])
 			}
 			*/
