@@ -76,7 +76,7 @@ public class Game{
 				}
 			}
 		}
-		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + boardData);
+		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData);
 	}
 	
 	/*public int getNextMove(int turn){
@@ -131,6 +131,8 @@ public class Game{
 	//handles move validation.  if valid places token into array and returns success
 	public String validateMove(String gamemove) 
 	{
+		if (gameover)
+			return gameoverMsg;
 		//String temp = gamemove[1];
 		String[] tempArr = gamemove.split(",");
 		int x = Integer.parseInt(tempArr[0]);
@@ -170,8 +172,25 @@ public class Game{
 
 	//increases idle time. returns false if idle time is to high
 	public boolean checkidle(){
-		if (idletime > maxidle){
-			//TODO add game termination function
+		if (idletime > maxidle)
+		{
+			//TODO add game termination function -- SHOULD BE TODONE NOW
+			//gameover goes true, current player is the loser
+			gameover = true;
+			if(p1turn)
+			{
+				gameoverMsg = "success:win:" + user2 + ":user1 failed to play";
+				DBHandler.incrementTotalGamesByUser(user1);
+				DBHandler.incrementWinsByUser(user2);
+				DBHandler.incrementTotalGamesByUser(user2);
+			}
+			else
+			{
+				gameoverMsg = "success:win:" + user1 + ":user2 failed to play";
+				DBHandler.incrementTotalGamesByUser(user2);
+				DBHandler.incrementWinsByUser(user1);
+				DBHandler.incrementTotalGamesByUser(user1);
+			}
 			return false;
 		}
 		idletime++;
@@ -187,7 +206,7 @@ public class Game{
 			if(grid[x][i] != grid[x][y])
 			{
 				gameover = false;
-				return false;
+				break;
 			}
 			else if (i==2)
 			{
@@ -195,12 +214,19 @@ public class Game{
 				gameover = true;
 				if (p1turn)
 				{
+					DBHandler.incrementTotalGamesByUser(user2);
+					DBHandler.incrementWinsByUser(user1);
+					DBHandler.incrementTotalGamesByUser(user1);
 					gameoverMsg = "success:" + "win:" + user1;
+					
 					return true;
 				}
 				else
 				{
 					gameoverMsg = "success:" + "win:" + user2;
+					DBHandler.incrementTotalGamesByUser(user1);
+					DBHandler.incrementWinsByUser(user2);
+					DBHandler.incrementTotalGamesByUser(user2);
 					return true;
 				}
 			}
@@ -211,6 +237,7 @@ public class Game{
 			if(grid[i][y] != grid[x][y])
 			{
 				gameover = false;
+				break;
 			}
 			else if (i==2)
 			{
@@ -218,11 +245,17 @@ public class Game{
 				gameover = true;
 				if (p1turn)
 				{
+					DBHandler.incrementTotalGamesByUser(user2);
+					DBHandler.incrementWinsByUser(user1);
+					DBHandler.incrementTotalGamesByUser(user1);
 					gameoverMsg = "success:" + "win:" + user1;
 					return true;
 				}
 				else
 				{
+					DBHandler.incrementTotalGamesByUser(user1);
+					DBHandler.incrementWinsByUser(user2);
+					DBHandler.incrementTotalGamesByUser(user2);
 					gameoverMsg = "success:" + "win:" + user2;
 					return true;
 				}
@@ -240,11 +273,17 @@ public class Game{
 				
 				if (p1turn)
 				{
+					DBHandler.incrementTotalGamesByUser(user2);
+					DBHandler.incrementWinsByUser(user1);
+					DBHandler.incrementTotalGamesByUser(user1);
 					gameoverMsg = "success:" + "win:" + user1;
 					return true;
 				}
 				else
 				{
+					DBHandler.incrementTotalGamesByUser(user1);
+					DBHandler.incrementWinsByUser(user2);
+					DBHandler.incrementTotalGamesByUser(user2);
 					gameoverMsg = "success:" + "win:" + user2;
 					return true;
 				}
@@ -254,11 +293,17 @@ public class Game{
 				gameover = true;
 				if (p1turn)
 				{
+					DBHandler.incrementTotalGamesByUser(user2);
+					DBHandler.incrementWinsByUser(user1);
+					DBHandler.incrementTotalGamesByUser(user1);
 					gameoverMsg = "success:" + "win:" + user1;
 					return true;
 				}
 				else
 				{
+					DBHandler.incrementTotalGamesByUser(user1);
+					DBHandler.incrementWinsByUser(user2);
+					DBHandler.incrementTotalGamesByUser(user2);
 					gameoverMsg = "success:" + "win:" + user2;
 					return true;
 				}
@@ -268,6 +313,8 @@ public class Game{
 		//draw condition
 		if ((moveCount == 9) && !gameover)
 		{
+			DBHandler.incrementTotalGamesByUser(user1);
+			DBHandler.incrementTotalGamesByUser(user2);
 			gameoverMsg = "success:draw:" + user1 + ":" + user2;
 			gameover = true;
 			return true;
