@@ -16,7 +16,9 @@ public final class DBHandler {
 			while (rs.next()) {
 				dbpassword = rs.getString("password");
 		
-				if(dbpassword.equals(password)) {
+				if(dbpassword.equals(password)) 
+				{
+					stmt.executeUpdate("UPDATE users SET online ='1' WHERE username='" + username +"'");
 					conn.close();
 					return "success:user and pass correct";
 				}
@@ -131,16 +133,118 @@ public final class DBHandler {
     
     public static boolean incrementWinsByUser(String username)
     {
-    	return false;
+    	try 
+    	{
+			//System.out.println("\nAttempting driver load\n");
+			Class.forName("com.mysql.jdbc.Driver");
+			//System.out.println("\ndriver should have been loaded\n");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT wins FROM users WHERE username = '" + username +"'");
+			
+			while (rs.next()) 
+			{
+				 int temp =  rs.getInt("wins");
+				 temp++;
+				 stmt.executeUpdate("UPDATE users SET wins ='" + temp + "' WHERE username='" + username +"'");
+				 conn.close();
+				 return true;
+			}
+			
+			conn.close();
+			return false;
+			
+    	} catch (Exception e) { System.out.println(e); return false; }
+    	//return false;
     }
     
     public static boolean incrementTotalGamesByUser(String username)
     {
-    	return false;
+    	try 
+    	{
+			//System.out.println("\nAttempting driver load\n");
+			Class.forName("com.mysql.jdbc.Driver");
+			//System.out.println("\ndriver should have been loaded\n");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT totalgames FROM users WHERE username = '" + username +"'");
+			
+			while (rs.next()) 
+			{
+				 int temp =  rs.getInt("totalgames");
+				 temp++;
+				 stmt.executeUpdate("UPDATE users SET totalgames ='" + temp + "' WHERE username='" + username +"'");
+				 conn.close();
+				 return true;
+			}
+			
+			conn.close();
+			return false;
+			
+    	} catch (Exception e) { System.out.println(e); return false; }
+    	//return false;
     }
     
-    public static boolean setRankingByUser(String username)
+    public static boolean setRankingByUser(String username, int newRank)
     {
-    	return false;
+    	try 
+    	{
+			//System.out.println("\nAttempting driver load\n");
+			Class.forName("com.mysql.jdbc.Driver");
+			//System.out.println("\ndriver should have been loaded\n");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
+			Statement stmt = conn.createStatement();
+			//still querying their old ranking to make sure the account exists
+			//if no username match is found, the update will not fire and the conn will close and 
+			//return false
+			ResultSet rs = stmt.executeQuery("SELECT ranking FROM users WHERE username = '" + username +"'");
+			
+			while (rs.next()) 
+			{
+				 stmt.executeUpdate("UPDATE users SET ranking ='" + newRank + "' WHERE username='" + username +"'");
+				 conn.close();
+				 return true;
+			}
+			conn.close();
+			return false;
+			
+    	} catch (Exception e) { System.out.println(e); return false; }
+    	//return false;
+    }
+    
+    boolean toggleOnline(String username)
+    {
+    	try 
+    	{
+			//System.out.println("\nAttempting driver load\n");
+			Class.forName("com.mysql.jdbc.Driver");
+			//System.out.println("\ndriver should have been loaded\n");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
+			Statement stmt = conn.createStatement();
+			//still querying their old ranking to make sure the account exists
+			//if no username match is found, the update will not fire and the conn will close and 
+			//return false
+			ResultSet rs = stmt.executeQuery("SELECT online FROM users WHERE username = '" + username +"'");
+			
+			while (rs.next()) 
+			{
+				 int toggle = rs.getInt("online");
+				 //swap values
+				 if(toggle == 0)
+				 {
+					 toggle = 1;
+				 }
+				 else
+					 toggle = 0;
+				 
+				 stmt.executeUpdate("UPDATE users SET online ='" + toggle + "' WHERE username='" + username +"'");
+				 conn.close();
+				 return true;
+			}
+			conn.close();
+			return false;
+			
+    	} catch (Exception e) { System.out.println(e); return false; }
+    	//return false;
     }
 }
