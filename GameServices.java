@@ -157,9 +157,9 @@ public class GameServices implements Runnable{
 					temp = games.get(getGamebyId(Gameid)).getGameData().split(":");
 					if(((temp[2].equals(username)) && (temp[4].equals("p1"))) || ((temp[3].equals(username)) && (temp[4].equals("p2"))))
 						return games.get(getGamebyId(Gameid)).validateMove(moves);
-					return "error:gameMove:not "+ username + ":should be " + temp[2];
+					return "failed:gameMove:not "+ username + ":should be " + temp[2];
 				}
-				return "error:gameMove:game not found";
+				return "failed:gameMove:game not found";
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -167,6 +167,24 @@ public class GameServices implements Runnable{
 		}
 	}
 	
+	public static String getGameData(String username){
+		try {
+			Game temp;
+			synchronized (games){
+				Iterator<Game> iterator = games.iterator();
+				while(iterator.hasNext()){
+					temp = iterator.next();
+					if (username.equals(temp.getPlayerOne()) || (username.equals(temp.getPlayerTwo()))){
+						return games.get(getGamebyId(temp.getGameID())).getGameData();
+					}
+				}
+			}
+			return "failed:getGameData:" + username;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return "error:getGameData:exception";
+		}
+	}
 	//internal and testing methods
 	private void remove(String username){
 		try{
