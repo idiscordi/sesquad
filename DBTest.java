@@ -56,6 +56,13 @@ public class DBTest {
 		}
 		else
 			System.out.println("Failed on: Set Joe's ranking to 37\n");
+		
+		if(DBHandler.toggleOnline("test"))
+		{
+			System.out.println("Toggled online status on/off for test (should be off now)\n");
+		}
+		else
+			System.out.println("Failed on: Toggled online status on/off for test (should be off now)\n");
 
 	}
 
