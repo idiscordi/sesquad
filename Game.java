@@ -1,11 +1,15 @@
 import java.lang.String;
 import java.io.*;
+import java.lang.Math;
 
 public class Game{
 	private char[][] grid = new char[3][3];
 	private String user1;
 	private String user2;
 	private String gid;
+	boolean gameover;
+	private String gameoverMsg;
+	private int moveCount;
 	
 	private final static int maxidle = 50;
 	private int idletime;
@@ -19,6 +23,9 @@ public class Game{
 		user2 = username2;
 		gid = gameid;
 		idletime = 0;
+		gameover = false;
+		gameoverMsg = "";
+		moveCount = 0;
 	}
 	
 	public String getGameID()
@@ -47,7 +54,29 @@ public class Game{
 		else
 			temp = "p2";
 		
-		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp);
+		String boardData = "";
+		for (int i = 0; i < 3; i++)
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				if ((grid[i][j] != 'X') && (grid[i][j] != 'O'))
+				{
+					if ((i==2) && (j==2))
+						boardData += "_";
+					else
+						boardData += "_:";
+				}
+				else if( (i==2) && (j==2))
+				{
+					boardData += grid[i][j];
+				}
+				else
+				{
+					boardData += grid[i][j] + ":";
+				}
+			}
+		}
+		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData);
 	}
 	
 	/*public int getNextMove(int turn){
@@ -118,18 +147,24 @@ public class Game{
 		}
 		else if (p1turn)
 		{
-			
+				moveCount++;
 				grid[x][y] = 'O';
+				checkWin(x,y);
 				p1turn = !p1turn;
 		}
 		else
 		{
+			moveCount++;
 			grid[x][y] = 'X';
+			checkWin(x,y);
 			p1turn = !p1turn;
 		}
 
 		idletime = 0;
-		return "success:" + gid + ":move complete";
+		if (!gameover)
+			return "success:" + gid + ":move complete";
+		else
+			return gameoverMsg;
 		
 	}
 
@@ -141,5 +176,104 @@ public class Game{
 		}
 		idletime++;
 		return true;
+	}
+	
+	private boolean checkWin(int x, int y)
+	{
+		
+		//horizontal
+		for(int i = 0; i < 3; i++)
+		{
+			if(grid[x][i] != grid[x][y])
+			{
+				gameover = false;
+				return false;
+			}
+			else if (i==2)
+			{
+				//set gameover flag to true, generate winner string to return
+				gameover = true;
+				if (p1turn)
+				{
+					gameoverMsg = "success:" + "win:" + user1;
+					return true;
+				}
+				else
+				{
+					gameoverMsg = "success:" + "win:" + user2;
+					return true;
+				}
+			}
+		}
+		//vertical
+		for(int i = 0; i < 3; i++)
+		{
+			if(grid[i][y] != grid[x][y])
+			{
+				gameover = false;
+			}
+			else if (i==2)
+			{
+				//set gameover flag to true, generate winner string to return
+				gameover = true;
+				if (p1turn)
+				{
+					gameoverMsg = "success:" + "win:" + user1;
+					return true;
+				}
+				else
+				{
+					gameoverMsg = "success:" + "win:" + user2;
+					return true;
+				}
+			}
+		}
+		
+		//diagonal only needs to be checked for 5 of 9 possible piece placements
+		//that trigger the board evaluation
+		// when x == y or when abs(x-y) == 2
+		if ( (x == y) || (Math.abs(x-y) == 2) )
+		{
+			if ( (grid[0][0] == grid [1][1]) && (grid[1][1] == grid[2][2]) )
+			{
+				gameover = true;
+				
+				if (p1turn)
+				{
+					gameoverMsg = "success:" + "win:" + user1;
+					return true;
+				}
+				else
+				{
+					gameoverMsg = "success:" + "win:" + user2;
+					return true;
+				}
+			}
+			else if ( (grid[2][0] == grid [1][1]) && (grid[1][1] == grid[0][2]) )
+			{
+				gameover = true;
+				if (p1turn)
+				{
+					gameoverMsg = "success:" + "win:" + user1;
+					return true;
+				}
+				else
+				{
+					gameoverMsg = "success:" + "win:" + user2;
+					return true;
+				}
+			}
+		}
+		
+		//draw condition
+		if ((moveCount == 9) && !gameover)
+		{
+			gameoverMsg = "success:draw:" + user1 + ":" + user2;
+			gameover = true;
+			return true;
+		}
+			
+		//catchall line, should never be reached, but tends to make the compiler happy
+		return false;
 	}
 }
