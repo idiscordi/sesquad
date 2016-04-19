@@ -76,7 +76,7 @@ public class Game{
 				}
 			}
 		}
-		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData);
+		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + boardData);
 	}
 	
 	/*public int getNextMove(int turn){
