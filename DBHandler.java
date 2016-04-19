@@ -16,9 +16,7 @@ public final class DBHandler {
 			while (rs.next()) {
 				dbpassword = rs.getString("password");
 		
-				if(dbpassword.equals(password)) 
-				{
-					stmt.executeUpdate("UPDATE users SET online ='1' WHERE username='" + username +"'");
+				if(dbpassword.equals(password)) {
 					conn.close();
 					return "success:user and pass correct";
 				}
