@@ -10,6 +10,8 @@ public class Game{
 	boolean gameover;
 	private String gameoverMsg;
 	private int moveCount;
+	private boolean p1gameoverSent;
+	private boolean p2gameoverSent;
 	
 	private final static int maxidle = 50;
 	private int idletime;
@@ -26,6 +28,16 @@ public class Game{
 		gameover = false;
 		gameoverMsg = "";
 		moveCount = 0;
+		p1gameoverSent = false;
+		p2gameoverSent = false;
+	}
+	
+	public boolean sentBothGameover()
+	{
+		if (p1gameoverSent && p2gameoverSent)
+			return true;
+		
+		return false;
 	}
 	
 	public String getGameID()
@@ -75,6 +87,16 @@ public class Game{
 					boardData += grid[i][j] + ":";
 				}
 			}
+		}
+		if (p1turn && gameover)
+		{
+			p1gameoverSent = true;
+			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData + ":" + gameoverMsg);
+		}
+		else if (!p1turn && gameover)
+		{
+			p2gameoverSent = true;
+			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData + ":" + gameoverMsg);
 		}
 		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData);
 	}
@@ -163,10 +185,19 @@ public class Game{
 		}
 
 		idletime = 0;
-		if (!gameover)
-			return "success:" + gid + ":move complete";
-		else
+		
+		if (p1turn && gameover)
+		{
+			p1gameoverSent = true;
 			return gameoverMsg;
+		}
+		else if (!p1turn && gameover)
+		{
+			p2gameoverSent = true;
+			return gameoverMsg;
+		}
+		
+		return "success:" + gid + ":move complete";
 		
 	}
 
