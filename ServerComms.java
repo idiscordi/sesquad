@@ -39,6 +39,9 @@ class ServerComms
 			GameServices matchmaking = new GameServices("test");
 			matchmaking.start();
 			
+			Login login = new Login("test2");
+			login.start();
+			
 			ServerSocket listener = new ServerSocket(55000);
 			//while im not ordered to shutdown
 			while(!shutdown)
