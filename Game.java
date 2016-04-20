@@ -222,7 +222,7 @@ public class Game{
 				DBHandler.incrementWinsByUser(user1);
 				DBHandler.incrementTotalGamesByUser(user1);
 			}
-			return false;
+			return !this.sentBothGameover();
 		}
 		idletime++;
 		return true;
