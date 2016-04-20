@@ -185,6 +185,7 @@ public class GameServices implements Runnable{
 			return "error:getGameData:exception";
 		}
 	}
+	
 	//internal and testing methods
 	private void remove(String username){
 		try{

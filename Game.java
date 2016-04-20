@@ -203,6 +203,8 @@ public class Game{
 
 	//increases idle time. returns false if idle time is to high
 	public boolean checkidle(){
+		if (this.sentBothGameover())
+			return false;
 		if (idletime > maxidle)
 		{
 			//TODO add game termination function -- SHOULD BE TODONE NOW
@@ -222,7 +224,7 @@ public class Game{
 				DBHandler.incrementWinsByUser(user1);
 				DBHandler.incrementTotalGamesByUser(user1);
 			}
-			return !this.sentBothGameover();
+			return true;
 		}
 		idletime++;
 		return true;
