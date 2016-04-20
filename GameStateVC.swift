@@ -89,33 +89,38 @@ class GameStateVC: UIViewController {
         let colon = ":";
         let newline = "\n";
         
+        
+        let getgame = "getGameData";
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
         
-        let ingame = "ingame";
+       // file.writeData((getgame + colon + uname + colon + "0" + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
         
-        //socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((ingame + colon + uname + colon + "1" + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
-        //PROBLEMS BEGIN IN THIS BLOCK
-        //***********************************************
-        /*
-        var serverResponse = file.readDataToEndOfFile()
-        var sResp = serverResponse;
-        var srArray = split(serverResponse){$0 == ":"}
-        var whichP = srArray[5];
         
-        if (whichP == "p1"){
+        file.writeData((gamemove + colon + uname + colon + "0" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+       file.writeData((getgame + colon + uname + colon + "0" + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+        
+
+        
+        //New stuff
+        
+        if (last == "1"){
             
             sleep(1);
             //button = x
             sender.setTitle("X", forState: UIControlState.Normal)
             
-        }else if(whichP == "p2"){
+        }else if(last == "2"){
         
             //button = o
             sender.setTitle("O", forState: UIControlState.Normal)
-        }*/
-       //**********************************************
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+        
 
     }
     
@@ -129,7 +134,31 @@ class GameStateVC: UIViewController {
         let newline = "\n";
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((gamemove + colon + uname + colon + "0" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+
+        
+        
+        //New stuff
+        
+        if (last == "1"){
+            
+            sleep(1);
+            //button = x
+            sender.setTitle("X", forState: UIControlState.Normal)
+            
+        }else if(last == "2"){
+            
+            //button = o
+            sender.setTitle("O", forState: UIControlState.Normal)
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+
+        
+        
     }
 
     @IBAction func sq3(sender: UIButton) {
@@ -142,7 +171,29 @@ class GameStateVC: UIViewController {
         let newline = "\n";
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-        file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        file.writeData((gamemove + colon + uname + colon + "0" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+
+        //New stuff
+        
+        if (last == "1"){
+            
+            sleep(1);
+            //button = x
+            sender.setTitle("X", forState: UIControlState.Normal)
+            
+        }else if(last == "2"){
+            
+            //button = o
+            sender.setTitle("O", forState: UIControlState.Normal)
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+
     }
 
     @IBAction func sq4(sender: UIButton) {
@@ -156,6 +207,28 @@ class GameStateVC: UIViewController {
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
         file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+
+        //New stuff
+        
+        if (last == "1"){
+            
+            sleep(1);
+            //button = x
+            sender.setTitle("X", forState: UIControlState.Normal)
+            
+        }else if(last == "2"){
+            
+            //button = o
+            sender.setTitle("O", forState: UIControlState.Normal)
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+
     }
     
     @IBAction func sq5(sender: UIButton) {
@@ -169,6 +242,28 @@ class GameStateVC: UIViewController {
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
         file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+
+        //New stuff
+        
+        if (last == "1"){
+            
+            sleep(1);
+            //button = x
+            sender.setTitle("X", forState: UIControlState.Normal)
+            
+        }else if(last == "2"){
+            
+            //button = o
+            sender.setTitle("O", forState: UIControlState.Normal)
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+
     }
     
     @IBAction func sq6(sender: UIButton) {
@@ -182,6 +277,28 @@ class GameStateVC: UIViewController {
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
         file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+
+        //New stuff
+        
+        if (last == "1"){
+            
+            sleep(1);
+            //button = x
+            sender.setTitle("X", forState: UIControlState.Normal)
+            
+        }else if(last == "2"){
+            
+            //button = o
+            sender.setTitle("O", forState: UIControlState.Normal)
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+
     }
     
     @IBAction func sq7(sender: UIButton) {
@@ -195,6 +312,27 @@ class GameStateVC: UIViewController {
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
         file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+        
+        //New stuff
+        
+        if (last == "1"){
+            
+            sleep(1);
+            //button = x
+            sender.setTitle("X", forState: UIControlState.Normal)
+            
+        }else if(last == "2"){
+            
+            //button = o
+            sender.setTitle("O", forState: UIControlState.Normal)
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+
     }
     
     @IBAction func sq8(sender: UIButton) {
@@ -208,6 +346,27 @@ class GameStateVC: UIViewController {
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
         file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+        
+        //New stuff
+        
+        if (last == "1"){
+            
+            sleep(1);
+            //button = x
+            sender.setTitle("X", forState: UIControlState.Normal)
+            
+        }else if(last == "2"){
+            
+            //button = o
+            sender.setTitle("O", forState: UIControlState.Normal)
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+
     }
     
     @IBAction func sq9(sender: UIButton) {
@@ -221,6 +380,27 @@ class GameStateVC: UIViewController {
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
         file.writeData((gamemove + colon + uname + colon + "1" + colon + xcoord + comma + ycoord + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let last = Array(arrayLiteral: serverResponse)[0]
+        
+        //New stuff
+        
+        if (last == "1"){
+            
+            sleep(1);
+            //button = x
+            sender.setTitle("X", forState: UIControlState.Normal)
+            
+        }else if(last == "2"){
+            
+            //button = o
+            sender.setTitle("O", forState: UIControlState.Normal)
+        }else{
+            sender.setTitle("-", forState: UIControlState.Normal)
+        }
+
     }
     
     

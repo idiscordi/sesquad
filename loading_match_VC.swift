@@ -26,10 +26,7 @@ class loading_match_VC: UIViewController {
     
     @IBAction func FindMatchTapped(sender: AnyObject) {
         
-        let uiBusy = UIActivityIndicatorView(activityIndicatorStyle: .White)
-        uiBusy.hidesWhenStopped = true
-        uiBusy.startAnimating()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: uiBusy)
+        
         
         quitCheck = true;
         
@@ -68,6 +65,7 @@ class loading_match_VC: UIViewController {
         
     
     }
+    
     
     
     @IBAction func LeaveMatchTapped(sender: AnyObject) {
