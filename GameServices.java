@@ -102,7 +102,7 @@ public class GameServices implements Runnable{
 			if(player.rating < 0)
 				return "error:invalid rating:"+"0";
 			synchronized (line) {
-				line.add(new duck(username, "0"));
+				line.add(player);
 			}
 			return "success:join:" +username;
 		} catch (Exception e) {
