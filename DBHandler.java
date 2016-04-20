@@ -109,15 +109,18 @@ public final class DBHandler {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/squaddb", "handler", "handler");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username = '" + username +"'");
-			conn.close();
-			String toReturn = "success:";
-			
-			while (rs.next()) 
-			{
-				 toReturn += rs.getString("wins") + ":";
-				 toReturn += rs.getString("totalgames") + ":";
-				 toReturn += rs.getString("ranking");
-			}
+			//conn.close();
+                        String toReturn = "success:";
+
+                        if (rs.next())
+                        {
+                                 toReturn += rs.getString("wins") + ":";
+                                 toReturn += rs.getString("totalgames") + ":";
+                                 toReturn += rs.getString("ranking");
+                                 //rs.close();
+                        }
+                        conn.close();
+
 			if (toReturn.equals("success:"))
 				return "failed:username not found";
 			else return toReturn;
