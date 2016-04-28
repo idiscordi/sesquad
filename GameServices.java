@@ -157,7 +157,9 @@ public class GameServices implements Runnable{
 					temp = games.get(getGamebyId(Gameid)).getGameData().split(":");
 					if(((temp[2].equals(username)) && (temp[4].equals("p1"))) || ((temp[3].equals(username)) && (temp[4].equals("p2"))))
 						return games.get(getGamebyId(Gameid)).validateMove(moves);
-					return "failed:gameMove:not "+ username + ":should be " + temp[2];
+					if(temp[4].equals("p1"))
+						return "failed:gameMove:"+ username + ":should be " + temp[2];
+					return "failed:gameMove:"+ username + ":should be " + temp[3];
 				}
 				return "failed:gameMove:game not found";
 			}

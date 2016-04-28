@@ -205,6 +205,8 @@ public class Game{
 	public boolean checkidle(){
 		if (this.sentBothGameover())
 			return false;
+		if (idletime > 2*maxidle)
+			return false;
 		if (idletime > maxidle)
 		{
 			//TODO add game termination function -- SHOULD BE TODONE NOW
