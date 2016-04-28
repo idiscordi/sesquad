@@ -6,7 +6,9 @@ public class Parser {
 		//	while(input.contains("::")){
 			 //	input.replace("::", ":");
 		//	}
+			if(input == null) return "failed:DONT GIVE ME A NULL STRING THX";
 			String[] commandarr = input.split(":");
+			
 			
 			//login command "login:username:password"
 			if ((commandarr[0].equals("login")) && (commandarr.length >= 3)){
@@ -44,23 +46,24 @@ public class Parser {
 			else if ((commandarr[0].equals("getGameData")) && (commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 				output = GameServices.getGameData(commandarr[1]);
 			}
-			//default actions
-			else if ((commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("failed"))){
-				output = Login.checklogin(commandarr[1]);
-			}
-			else{
-				output = "failed:parser:invalid or missing values:" + commandarr[0];
-			}
 			/*
 			//Description
 		 	else if ((commandarr[0].equals("command")) && (commandarr.length >= x) && (Login.checklogin(commandarr[1]).startsWith("success"))){
 				output = class.request(commandarr[x])
 			}
 			*/
+			//default actions
+			else if((commandarr.length >= 2) && (Login.checklogin(commandarr[1]).startsWith("failed"))){
+				output = Login.checklogin(commandarr[1]);
+			}
+			else{
+				output = "failed:parser:invalid or missing values:" + commandarr[0];
+			}
 			if (ServerComms.debug)
 				System.out.println(commandarr[0] + " returned:" + output);
 			return output;
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.print("parser error" + e.toString());
 			return "failed:exception";
 		}
