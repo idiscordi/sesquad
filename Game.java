@@ -13,7 +13,7 @@ public class Game{
 	private boolean p1gameoverSent;
 	private boolean p2gameoverSent;
 	
-	private final static int maxidle = 50;
+	private final static int maxidle = 50000;
 	private int idletime;
 	//boolean toggle, 2 player game, any more is a waste of memory
 	public boolean p1turn = true;
@@ -91,14 +91,14 @@ public class Game{
 		if (p1turn && gameover)
 		{
 			p1gameoverSent = true;
-			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData + ":" + gameoverMsg);
+			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + boardData + ":" + gameoverMsg);
 		}
 		else if (!p1turn && gameover)
 		{
 			p2gameoverSent = true;
-			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData + ":" + gameoverMsg);
+			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + boardData + ":" + gameoverMsg);
 		}
-		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + boardData);
+		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + boardData);
 	}
 	
 	/*public int getNextMove(int turn){
@@ -245,7 +245,8 @@ public class Game{
 			}
 			else if (i==2)
 			{
-				//set gameover flag to true, generate winner string to return
+				System.out.println("\nin horizontal win section\n");
+//set gameover flag to true, generate winner string to return
 				gameover = true;
 				if (p1turn)
 				{
@@ -276,6 +277,7 @@ public class Game{
 			}
 			else if (i==2)
 			{
+				System.out.println("firing on vertwin");
 				//set gameover flag to true, generate winner string to return
 				gameover = true;
 				if (p1turn)
@@ -302,8 +304,9 @@ public class Game{
 		// when x == y or when abs(x-y) == 2
 		if ( (x == y) || (Math.abs(x-y) == 2) )
 		{
-			if ( (grid[0][0] == grid [1][1]) && (grid[1][1] == grid[2][2]) )
+			if ( (grid[0][0] == grid [1][1]) && (grid[1][1] == grid[2][2]) && (grid[1][1] == 'X' || grid[1][1] == 'O'))
 			{
+				System.out.println("diagwin\n");
 				gameover = true;
 				
 				if (p1turn)
@@ -323,8 +326,15 @@ public class Game{
 					return true;
 				}
 			}
-			else if ( (grid[2][0] == grid [1][1]) && (grid[1][1] == grid[0][2]) )
+			else if ( (grid[2][0] == grid [1][1]) && (grid[1][1] == grid[0][2]) && (grid[1][1] == 'X' || grid[1][1] == 'O'))
 			{
+				for(int i = 0; i < 3; i++)
+				{
+					for (int j = 0; j < 3; j++)
+						System.out.println(grid[i][j]);
+					System.out.println("\n");
+				}
+				System.out.println("diagwin2\n");
 				gameover = true;
 				if (p1turn)
 				{
