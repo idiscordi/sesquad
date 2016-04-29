@@ -40,28 +40,28 @@ class loading_match_VC: UIViewController {
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
         file.writeData((findmatch + colon + uname + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
         
-        let serverResponse = file.readDataToEndOfFile()
-        let first = Array(arrayLiteral: serverResponse)[0]
+        let serverResponse1 = file.readDataToEndOfFile()
+        var datastring1 = NSString(data:serverResponse1, encoding:NSUTF8StringEncoding) as! String
         
-        if (first == "f"){
+        if (datastring1.rangeOfString("success") != nil){
             
             sleep(1);
             file.writeData((findmatch as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+            self.performSegueWithIdentifier("to_match", sender: self)
             
         }
         let ex = "findmatch returned:success:join"+uname
         let serverResponse2 = file.readDataToEndOfFile()
-        let fst = Array(arrayLiteral: serverResponse2)[0]
-        if (fst == ex){
+        var datastring = NSString(data:serverResponse2, encoding:NSUTF8StringEncoding) as! String
+        if (datastring.rangeOfString("success") != nil){
             
-            while(1 > 0)
-            {
-                sleep(1);
                 file.writeData((ingame as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
-            }
+                self.performSegueWithIdentifier("to_match", sender: self)
             
+        }else{
+             file.writeData((findmatch as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
         }
-        self.performSegueWithIdentifier("to_match", sender: self)
+        
         
     
     }
