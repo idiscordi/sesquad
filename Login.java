@@ -63,10 +63,10 @@ class Login implements Runnable{
 						return "success";
 				}
 			}
-			return "Failed:checklogin:"+user+":logged out";
+			return "failed:checklogin:"+user+":logged out";
 		} catch (Exception e) {
 			System.out.println(e);
-			return "Failed:checklogin:exception";
+			return "failed:checklogin:exception";
 		}
 	}
 	

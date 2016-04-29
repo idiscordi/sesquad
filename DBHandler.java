@@ -90,7 +90,7 @@ public final class DBHandler {
 			+ "VALUES ('" + " + username + "', '" + dbpassword + "', '" + dbemail + "', 0, 0, 0, 0)";
 			*/
 			String sql = "INSERT INTO users (username, password, email, wins, totalgames, ranking, online)"
-			+ "VALUES ('"+username+"', '"+password+"', '"+email+"', 0, 0, 0, 0)";
+			+ "VALUES ('"+username+"', '"+password+"', '"+email+"', 0, 0, 100, 0)";
 			stmt.executeUpdate(sql);
 			conn.close();
 		} catch (Exception e) {
@@ -190,6 +190,12 @@ public final class DBHandler {
     {
     	try 
     	{
+    		//catch for rankings outside of range
+    		if(newRank < 0)
+    			newRank = 0;
+    		else if(newRank > 1000)
+    			newRank = 1000;
+    		
 			//System.out.println("\nAttempting driver load\n");
 			Class.forName("com.mysql.jdbc.Driver");
 			//System.out.println("\ndriver should have been loaded\n");

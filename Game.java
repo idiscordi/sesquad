@@ -207,7 +207,7 @@ public class Game{
 			return false;
 		if (idletime > 2*maxidle)
 			return false;
-		if (idletime > maxidle)
+		if ((idletime > maxidle) && (gameover == false))
 		{
 			//TODO add game termination function -- SHOULD BE TODONE NOW
 			//gameover goes true, current player is the loser
@@ -232,6 +232,30 @@ public class Game{
 		return true;
 	}
 	
+	private boolean declareWin(String winner, String loser){
+		try {
+			//update database values
+			DBHandler.incrementTotalGamesByUser(loser);
+			DBHandler.incrementWinsByUser(winner);
+			DBHandler.incrementTotalGamesByUser(winner);
+			
+			//updtate loser ranking
+			String loseData[] = DBHandler.getDataByUser(loser).split(":");
+			if(loseData[0].equals("success"))
+				DBHandler.setRankingByUser(loser, Integer.parseInt(loseData[3])-1);
+			
+			//update winner ranking
+			String winData[] = DBHandler.getDataByUser(winner).split(":");
+			if(winData[0].equals("success"))
+				DBHandler.setRankingByUser(winner, Integer.parseInt(winData[3])+1);
+			
+			return true;
+		} catch (Exception e) {
+			System.out.print("declareWin:"+ e);
+			return false;
+		}
+	}
+
 	private boolean checkWin(int x, int y)
 	{
 		
@@ -250,19 +274,14 @@ public class Game{
 				gameover = true;
 				if (p1turn)
 				{
-					DBHandler.incrementTotalGamesByUser(user2);
-					DBHandler.incrementWinsByUser(user1);
-					DBHandler.incrementTotalGamesByUser(user1);
+					this.declareWin(user1, user2);
 					gameoverMsg = "success:" + "win:" + user1;
-					
 					return true;
 				}
 				else
 				{
+					this.declareWin(user2, user1);
 					gameoverMsg = "success:" + "win:" + user2;
-					DBHandler.incrementTotalGamesByUser(user1);
-					DBHandler.incrementWinsByUser(user2);
-					DBHandler.incrementTotalGamesByUser(user2);
 					return true;
 				}
 			}
@@ -282,17 +301,13 @@ public class Game{
 				gameover = true;
 				if (p1turn)
 				{
-					DBHandler.incrementTotalGamesByUser(user2);
-					DBHandler.incrementWinsByUser(user1);
-					DBHandler.incrementTotalGamesByUser(user1);
+					this.declareWin(user1, user2);
 					gameoverMsg = "success:" + "win:" + user1;
 					return true;
 				}
 				else
 				{
-					DBHandler.incrementTotalGamesByUser(user1);
-					DBHandler.incrementWinsByUser(user2);
-					DBHandler.incrementTotalGamesByUser(user2);
+					this.declareWin(user2, user1);
 					gameoverMsg = "success:" + "win:" + user2;
 					return true;
 				}
@@ -311,17 +326,13 @@ public class Game{
 				
 				if (p1turn)
 				{
-					DBHandler.incrementTotalGamesByUser(user2);
-					DBHandler.incrementWinsByUser(user1);
-					DBHandler.incrementTotalGamesByUser(user1);
+					this.declareWin(user1, user2);
 					gameoverMsg = "success:" + "win:" + user1;
 					return true;
 				}
 				else
 				{
-					DBHandler.incrementTotalGamesByUser(user1);
-					DBHandler.incrementWinsByUser(user2);
-					DBHandler.incrementTotalGamesByUser(user2);
+					this.declareWin(user2, user1);
 					gameoverMsg = "success:" + "win:" + user2;
 					return true;
 				}
@@ -338,17 +349,13 @@ public class Game{
 				gameover = true;
 				if (p1turn)
 				{
-					DBHandler.incrementTotalGamesByUser(user2);
-					DBHandler.incrementWinsByUser(user1);
-					DBHandler.incrementTotalGamesByUser(user1);
+					this.declareWin(user1, user2);
 					gameoverMsg = "success:" + "win:" + user1;
 					return true;
 				}
 				else
 				{
-					DBHandler.incrementTotalGamesByUser(user1);
-					DBHandler.incrementWinsByUser(user2);
-					DBHandler.incrementTotalGamesByUser(user2);
+					this.declareWin(user2, user1);
 					gameoverMsg = "success:" + "win:" + user2;
 					return true;
 				}
