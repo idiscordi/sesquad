@@ -46,12 +46,12 @@ class loading_match_VC: UIViewController {
         if (datastring1.rangeOfString("success") != nil){
             
             sleep(1);
-            file.writeData((findmatch as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+            file.writeData((ingame as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
             self.performSegueWithIdentifier("to_match", sender: self)
             
         }
         //let ex = "findmatch returned:success:join"+uname
-        let serverResponse2 = file.readDataToEndOfFile()
+        /*let serverResponse2 = file.readDataToEndOfFile()
         let datastring = NSString(data:serverResponse2, encoding:NSUTF8StringEncoding) as! String
         if (datastring.rangeOfString("success") != nil){
             
@@ -60,8 +60,9 @@ class loading_match_VC: UIViewController {
             
         }else{
              file.writeData((findmatch as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+            self.performSegueWithIdentifier("to_match", sender: self)
             
-        }
+        }*/
         
         
     

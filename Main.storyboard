@@ -53,8 +53,12 @@
                                     <segue destination="Ltm-pw-gCI" kind="push" id="ZCa-n6-Ao0"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logotest.png" id="bhm-Hc-9eW">
+                                <rect key="frame" x="40" y="99" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="HOME" id="Lii-td-0L0"/>
                     <connections>
@@ -77,7 +81,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="field.png" id="zV3-KT-lJH">
                                 <rect key="frame" x="0.0" y="65" width="320" height="415"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" id="j8C-vc-rma">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -109,76 +113,76 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vFK-CJ-48y">
-                                <rect key="frame" x="47" y="187" width="46" height="30"/>
+                                <rect key="frame" x="55" y="187" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="   -  "/>
                                 <connections>
                                     <action selector="sq1:" destination="koz-6D-gSc" eventType="touchUpInside" id="Bnf-eA-n47"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M7p-Au-MQa">
-                                <rect key="frame" x="137" y="187" width="46" height="30"/>
+                                <rect key="frame" x="145" y="187" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="  -  "/>
                                 <connections>
                                     <action selector="sq2:" destination="koz-6D-gSc" eventType="touchUpInside" id="hdK-HO-rrP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Tx-mI-yy9">
-                                <rect key="frame" x="220" y="187" width="46" height="30"/>
+                                <rect key="frame" x="228" y="187" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="-"/>
                                 <connections>
                                     <action selector="sq3:" destination="koz-6D-gSc" eventType="touchUpInside" id="szZ-aR-7JN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tSN-pf-Is2">
-                                <rect key="frame" x="47" y="263" width="46" height="30"/>
+                                <rect key="frame" x="55" y="263" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="-"/>
                                 <connections>
                                     <action selector="sq4:" destination="koz-6D-gSc" eventType="touchUpInside" id="CC6-Fb-W1R"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uu7-ZG-c4V">
-                                <rect key="frame" x="137" y="263" width="46" height="30"/>
+                                <rect key="frame" x="145" y="263" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="   -   "/>
                                 <connections>
                                     <action selector="sq5:" destination="koz-6D-gSc" eventType="touchUpInside" id="lg5-4Z-fkz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rwv-W6-ZYM">
-                                <rect key="frame" x="47" y="345" width="46" height="30"/>
+                                <rect key="frame" x="53" y="345" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="    -   "/>
                                 <connections>
                                     <action selector="sq7:" destination="koz-6D-gSc" eventType="touchUpInside" id="7Lh-Yq-2de"/>
                                     <action selector="sq7:" destination="koz-6D-gSc" eventType="touchDown" id="Xrq-8u-nVQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yCh-70-Ids">
-                                <rect key="frame" x="137" y="345" width="46" height="30"/>
+                                <rect key="frame" x="145" y="345" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="   -  "/>
                                 <connections>
                                     <action selector="sq8:" destination="koz-6D-gSc" eventType="touchDown" id="IfK-DE-WD5"/>
                                     <action selector="sq8:" destination="koz-6D-gSc" eventType="touchUpInside" id="lvL-ud-LjQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="whR-Xc-K3N">
-                                <rect key="frame" x="220" y="345" width="46" height="30"/>
+                                <rect key="frame" x="228" y="345" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="  -  "/>
                                 <connections>
                                     <action selector="sq9:" destination="koz-6D-gSc" eventType="touchDown" id="GWt-Gw-iGz"/>
                                     <action selector="sq9:" destination="koz-6D-gSc" eventType="touchUpInside" id="m26-OW-Ipz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b1V-Bv-WWJ">
-                                <rect key="frame" x="220" y="263" width="46" height="30"/>
+                                <rect key="frame" x="222" y="263" width="43" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="     -    "/>
                                 <connections>
                                     <action selector="sq6:" destination="koz-6D-gSc" eventType="touchUpInside" id="Dfw-qq-fUB"/>
                                 </connections>
@@ -201,6 +205,17 @@
                     </navigationItem>
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="400"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sq1" destination="vFK-CJ-48y" id="u1J-bK-bGm"/>
+                        <outlet property="sq2" destination="M7p-Au-MQa" id="4Az-Np-PtP"/>
+                        <outlet property="sq3" destination="0Tx-mI-yy9" id="Xm8-Xo-66h"/>
+                        <outlet property="sq4" destination="tSN-pf-Is2" id="ruz-nd-UME"/>
+                        <outlet property="sq5" destination="Uu7-ZG-c4V" id="0zu-z4-x8r"/>
+                        <outlet property="sq6" destination="b1V-Bv-WWJ" id="DIE-aW-WuT"/>
+                        <outlet property="sq7" destination="rwv-W6-ZYM" id="R2N-Pz-Kzb"/>
+                        <outlet property="sq8" destination="yCh-70-Ids" id="86r-h6-BUa"/>
+                        <outlet property="sq9" destination="whR-Xc-K3N" id="VYR-dD-pUw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Haa-uv-1a4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -217,13 +232,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G9h-ls-wgE">
                                 <rect key="frame" x="128" y="219" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Get Stats"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Get Stats">
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="StatsTapped:" destination="Ltm-pw-gCI" eventType="touchUpInside" id="GOj-3Y-fPl"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="cur-uw-zDu"/>
                 </viewController>
@@ -240,8 +258,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ns3-kH-c6M">
-                                <rect key="frame" x="0.0" y="301" width="320" height="30"/>
+                                <rect key="frame" x="102" y="301" width="116" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Sign up"/>
                                 <connections>
                                     <action selector="SignupTapped:" destination="SEg-JK-1m1" eventType="touchUpInside" id="Z5M-hN-gUZ"/>
@@ -279,15 +298,16 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n3o-dJ-0W7">
-                                <rect key="frame" x="0.0" y="328" width="320" height="30"/>
+                                <rect key="frame" x="44" y="344" width="232" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Already have an account? Login!"/>
                                 <connections>
                                     <action selector="gotoLogin:" destination="SEg-JK-1m1" eventType="touchUpInside" id="snu-qS-ItU"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="txtConfirmPassword" destination="VwM-Yh-jrJ" id="eN4-0X-cB2"/>
@@ -327,24 +347,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lkY-oF-koU">
-                                <rect key="frame" x="0.0" y="284" width="320" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Don't have an account? Click here!"/>
-                                <connections>
-                                    <segue destination="SEg-JK-1m1" kind="modal" id="spy-pQ-ZpX"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C1a-MG-7O7">
-                                <rect key="frame" x="0.0" y="234" width="320" height="30"/>
+                                <rect key="frame" x="105" y="234" width="110" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Sign in"/>
                                 <connections>
                                     <action selector="signinTapped:" destination="QKr-Kx-Br9" eventType="touchUpInside" id="mDZ-7a-QXL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lkY-oF-koU">
+                                <rect key="frame" x="32" y="284" width="256" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Don't have an account? Click here!"/>
+                                <connections>
+                                    <segue destination="SEg-JK-1m1" kind="modal" id="spy-pQ-ZpX"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="txtPassword" destination="J48-bR-wRe" id="idD-bE-qzx"/>
@@ -406,7 +428,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <segue destination="koz-6D-gSc" kind="modal" identifier="to_match" id="9A0-eb-zBl"/>
@@ -419,6 +441,7 @@
     </scenes>
     <resources>
         <image name="field.png" width="320" height="503"/>
+        <image name="logotest.png" width="543" height="102"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
