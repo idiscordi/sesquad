@@ -10,7 +10,10 @@
 	$sqlreturn;
 	$retrow;
 	$loginpw;
-	
+?>
+<body bgcolor=#95B9C7>
+<p id=imgpara style="textalign:center"><center><img src="logotest.png" heigh=150 width = 600></img></center></p><br><br>
+<?php
 	
 	if(isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true)
 	{
@@ -19,7 +22,6 @@
 		session_destroy();
 		session_start();
 		unset($_REQUEST["logout"]);
-		unset($_REQUEST["updateForm"]);
 		echo "<br>Account has been logged out due to user's request or elevated action performed<br><br>";
 	}
 
@@ -135,6 +137,11 @@
 		$sqlrank = "UPDATE users SET ranking='". $_REQUEST["editRanking"] ."' WHERE username ='". $editName . "'";
 		}
 		
+#var_dump($sqlpw); echo "<br>";
+#var_dump($sqlemail); echo "<br>";
+#var_dump($sqlwins); echo "<br>";
+#var_dump($sqlgames); echo "<br>";
+#var_dump($sqlrank); echo "<br>";
 		
 		$dbcon = mysqli_connect($serverAddr, $dbloginname, $dbloginpw, $dbtouse);
 
@@ -159,7 +166,7 @@
 				{echo "<br><br>Failed to execute " . $sqlrank . "<br><br>";}}
 		
 		mysqli_close($dbcon);
-		echo("Account has been logged out after performing elevated action.<br>");
+		#echo("Account has been logged out after performing elevated action.<br>");
 	}
 	
 	
@@ -183,6 +190,7 @@
 
 	if(isset($_REQUEST["updateForm"]))
 	{
+		#echo "update usr<br>";
 		updateUser();
 		unset($_REQUEST["updateForm"]);
 	}
