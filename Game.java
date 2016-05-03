@@ -91,12 +91,12 @@ public class Game{
 		if (p1turn && gameover)
 		{
 			p1gameoverSent = true;
-			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + boardData + ":" + gameoverMsg);
+			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + gameoverMsg + ":" + boardData);
 		}
 		else if (!p1turn && gameover)
 		{
 			p2gameoverSent = true;
-			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + boardData + ":" + gameoverMsg);
+			return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + gameoverMsg + ":" + boardData);
 		}
 		return ("gamedata:" + gid + ":" + user1 + ":" + user2 + ":" + temp + ":" + boardData);
 	}
