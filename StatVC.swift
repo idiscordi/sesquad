@@ -31,6 +31,15 @@ class StatVC: UIViewController {
         
         socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
         file.writeData((getstats + colon + uname + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        let serverResponse = file.readDataToEndOfFile()
+        let datastring = NSString(data:serverResponse, encoding:NSUTF8StringEncoding) as! String
+        
+        let alert1 = UIAlertView();
+        alert1.title = "Stats for User: Wins/Total Games Played";
+        alert1.message = datastring;
+        alert1.addButtonWithTitle("Back");
+        alert1.show();
     }
 
     

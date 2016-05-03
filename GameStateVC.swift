@@ -17,6 +17,8 @@ var ycoord = "0";
 let comma = ",";
 var whichPlayer = 3;
 let gameid = "0";
+var temp = " ";
+var initialize = true;
 
 class GameStateVC: UIViewController {
     
@@ -62,7 +64,7 @@ class GameStateVC: UIViewController {
     
     }
     
-    func UpdateBoard(){
+    func UpdateBoard() ->String{
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         xcoord = "0";
@@ -77,106 +79,203 @@ class GameStateVC: UIViewController {
         
         let serverResponse = file.readDataToEndOfFile()
         let datastring = NSString(data:serverResponse, encoding:NSUTF8StringEncoding) as! String
+        let reversed = String(datastring.characters.reverse())
+        //temp = reversed
+        print(reversed)
+        //let arr = Array(arrayLiteral: reversed)[16];
+        let char9 = String(reversed[reversed.startIndex.advancedBy(1)])
+        let char8 = String(reversed[reversed.startIndex.advancedBy(3)])
+        let char7 = String(reversed[reversed.startIndex.advancedBy(5)])
+        let char6 = String(reversed[reversed.startIndex.advancedBy(7)])
+        let char5 = String(reversed[reversed.startIndex.advancedBy(9)])
+        let char4 = String(reversed[reversed.startIndex.advancedBy(11)])
+        let char3 = String(reversed[reversed.startIndex.advancedBy(13)])
+        let char2 = String(reversed[reversed.startIndex.advancedBy(15)])
+        let char1 = String(reversed[reversed.startIndex.advancedBy(17)])
         
-        if (datastring.rangeOfString("X:_:_:_:_:_:_:_:_") != nil)
+        //print(char1)
+        //print(char2)
+        //print(char3)
+        
+        if (char9 == ("X"))
+        {
+            sq9.setTitle("X", forState: UIControlState.Normal)
+            
+        } else if (char9 == ("O")){
+            sq9.setTitle("O", forState: UIControlState.Normal)
+            
+        }else if (char9 == ("_")){
+            
+            sq9.setTitle("-", forState: UIControlState.Normal)
+        }
+        
+        if (char8 == ("X"))
+        {
+            sq8.setTitle("X", forState: UIControlState.Normal)
+            
+        } else if (char8 == ("O")){
+            sq8.setTitle("O", forState: UIControlState.Normal)
+            
+        }else if (char8 == ("_")){
+            
+            sq8.setTitle("-", forState: UIControlState.Normal)
+        }
+        
+        if (char7 == ("X"))
+        {
+            sq7.setTitle("X", forState: UIControlState.Normal)
+            
+        } else if (char7 == ("O")){
+            sq7.setTitle("O", forState: UIControlState.Normal)
+            
+        }else if (char7 == ("_")){
+            
+            sq7.setTitle("-", forState: UIControlState.Normal)
+        }
+        
+        if (char6 == ("X"))
+        {
+            sq6.setTitle("X", forState: UIControlState.Normal)
+            
+        } else if (char6 == ("O")){
+            sq6.setTitle("O", forState: UIControlState.Normal)
+            
+        }else if (char6 == ("_")){
+            
+            sq6.setTitle("-", forState: UIControlState.Normal)
+        }
+        
+        if (char5 == ("X"))
+        {
+            sq5.setTitle("X", forState: UIControlState.Normal)
+            
+        } else if (char5 == ("O")){
+            sq5.setTitle("O", forState: UIControlState.Normal)
+            
+        }else if (char5 == ("_")){
+            
+            sq5.setTitle("-", forState: UIControlState.Normal)
+        }
+        
+        if (char4 == ("X"))
+        {
+            sq4.setTitle("X", forState: UIControlState.Normal)
+            
+        } else if (char4 == ("O")){
+            sq4.setTitle("O", forState: UIControlState.Normal)
+            
+        }else if (char4 == ("_")){
+            
+            sq4.setTitle("-", forState: UIControlState.Normal)
+        }
+        
+        if (char3 == ("X"))
+        {
+            sq3.setTitle("X", forState: UIControlState.Normal)
+            
+        } else if (char3 == ("O")){
+            sq3.setTitle("O", forState: UIControlState.Normal)
+            
+        }else if (char3 == ("_")){
+            
+            sq3.setTitle("-", forState: UIControlState.Normal)
+        }
+        
+        if (char2 == ("X"))
+        {
+            sq2.setTitle("X", forState: UIControlState.Normal)
+            
+        } else if (char2 == ("O")){
+            sq2.setTitle("O", forState: UIControlState.Normal)
+            
+        }else if (char2 == ("_")){
+            
+            sq2.setTitle("-", forState: UIControlState.Normal)
+        }
+        
+        if (char1 == ("X"))
         {
             sq1.setTitle("X", forState: UIControlState.Normal)
             
-        }else if (datastring.rangeOfString("O:_:_:_:_:_:_:_:_") != nil){
+        } else if (char1 == ("O")){
             sq1.setTitle("O", forState: UIControlState.Normal)
             
-        }else if (datastring.rangeOfString("_:X:_:_:_:_:_:_:_") != nil){
+        }else if (char1 == ("_")){
             
-            sq2.setTitle("X", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:O:_:_:_:_:_:_:_") != nil){
-            
-            sq2.setTitle("O", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:X:_:_:_:_:_:_") != nil){
-            
-            sq3.setTitle("X", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:O:_:_:_:_:_:_") != nil){
-            
-            sq3.setTitle("O", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:X:_:_:_:_:_") != nil){
-            
-            sq4.setTitle("X", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:O:_:_:_:_:_") != nil){
-            
-            sq4.setTitle("O", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:X:_:_:_:_") != nil){
-            
-            sq5.setTitle("X", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:O:_:_:_:_") != nil){
-            
-            sq5.setTitle("O", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:_:X:_:_:_") != nil){
-            
-            sq6.setTitle("X", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:_:O:_:_:_") != nil){
-            
-            sq6.setTitle("O", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:_:_:X:_:_") != nil){
-            
-            sq7.setTitle("X", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:_:_:O:_:_") != nil){
-            
-            sq7.setTitle("O", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:_:_:_:X:_") != nil){
-            
-            sq8.setTitle("X", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:_:_:_:O:_") != nil){
-            
-            sq8.setTitle("O", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:_:_:_:_:X") != nil){
-            
-            sq9.setTitle("X", forState: UIControlState.Normal)
-            
-        }else if (datastring.rangeOfString("_:_:_:_:_:_:_:_:O") != nil){
-            
-            sq9.setTitle("X", forState: UIControlState.Normal)
-            
+            sq1.setTitle("-", forState: UIControlState.Normal)
         }
+        if(datastring.rangeOfString("win") != nil)
+        {
+            //initialize = true;
+            if(datastring.rangeOfString("p1") != nil)
+            {
+                //display alert saying player 1 won
+                let alert3 = UIAlertView();
+                alert3.title = "Game Over";
+                alert3.message = "Player 1 wins!";
+                alert3.addButtonWithTitle("Close");
+                alert3.show();
+                
+            }else if(datastring.rangeOfString("p2") != nil)
+            {
+                
+                //display alert saying player 2 won
+                let alert3 = UIAlertView();
+                alert3.title = "Game Over";
+                alert3.message = "Player 2 wins!";
+                alert3.addButtonWithTitle("Close");
+                alert3.show();
+            }
+        }
+        return reversed
     }
     
     
-    override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
         
-       /* while(true)
-        {
             let socket = TCPIPSocket();
             let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
-            let getGameData = "getGameData";
+            let ingame = "ingame";
             let colon = ":";
             let newline = "\n";
             
             socket.connect(TCPIPSocketAddress(130, 184, 98, 90), 55000)
-            sleep(1);
-            file.writeData((getGameData + colon + uname + colon + gameid + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
-        }*/
-
+            //sleep(1);
+            file.writeData((ingame + colon + uname + colon + gameid + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        let serverResponse = file.readDataToEndOfFile()
+        let datastring = NSString(data:serverResponse, encoding:NSUTF8StringEncoding) as! String
+        if ((datastring.rangeOfString("p2")) != nil)
+        {
+            initialize = false;
+            workpls();
+        }else{
+            workpls();
+        }
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
+     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func workpls()
+    {
+        if(initialize == true)
+        {
+            UpdateBoard()
+            initialize = false;
+        }else{
+            temp = UpdateBoard()
+            while(temp.rangeOfString("win") == nil && temp == UpdateBoard())
+            {
+                sleep(2)
+                
+            }
+        }
+    
+    }
 
     @IBAction func GameStatusTapped(sender: UIButton) {
     
@@ -218,7 +317,7 @@ class GameStateVC: UIViewController {
     
     
     @IBAction func QuitGameTapped(sender: AnyObject) {
-        let socket = TCPIPSocket();
+        /*let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let getstate = "getstate";
         //let leavematch = "leavematch";
@@ -231,20 +330,21 @@ class GameStateVC: UIViewController {
         
         //file.writeData((leavematch + colon + uname + newline as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
         
-        quitCheck = true;
+        //quitCheck = true;*/
         
+        self.performSegueWithIdentifier("quit_game", sender: self)
         
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "to_match");
+        /*NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
         
-        self.dismissViewControllerAnimated(true, completion: nil);
+        self.dismissViewControllerAnimated(true, completion: nil);*/
 
     
     }
 
     @IBAction func sq1(sender: UIButton) {
         
-        UpdateBoard();
+        //UpdateBoard();
         
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
@@ -298,7 +398,7 @@ class GameStateVC: UIViewController {
         }*/
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -311,15 +411,16 @@ class GameStateVC: UIViewController {
             sq1.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq1.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
         
-        UpdateBoard();
+        workpls();
         
 
     }
     
+    
     @IBAction func sq2(sender: UIButton) {
-        UpdateBoard();
+        //UpdateBoard();
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let gamemove = "gamemove";
@@ -344,7 +445,7 @@ class GameStateVC: UIViewController {
         
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -357,15 +458,15 @@ class GameStateVC: UIViewController {
             sq2.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq2.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
 
-        UpdateBoard();
+        workpls();
         
         
     }
 
     @IBAction func sq3(sender: UIButton) {
-        UpdateBoard();
+        //UpdateBoard();
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let gamemove = "gamemove";
@@ -388,7 +489,7 @@ class GameStateVC: UIViewController {
 
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -401,15 +502,15 @@ class GameStateVC: UIViewController {
             sq3.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq3.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
         
-        UpdateBoard();
+        workpls();
 
 
     }
 
     @IBAction func sq4(sender: UIButton) {
-        UpdateBoard();
+        //UpdateBoard();
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let gamemove = "gamemove";
@@ -432,7 +533,7 @@ class GameStateVC: UIViewController {
 
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -445,15 +546,15 @@ class GameStateVC: UIViewController {
             sq4.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq4.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
         
-        UpdateBoard();
+        workpls();
 
 
     }
     
     @IBAction func sq5(sender: UIButton) {
-        UpdateBoard();
+        //UpdateBoard();
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let gamemove = "gamemove";
@@ -476,7 +577,7 @@ class GameStateVC: UIViewController {
 
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -489,15 +590,15 @@ class GameStateVC: UIViewController {
             sq5.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq5.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
         
-        UpdateBoard();
+        workpls();
 
 
     }
     
     @IBAction func sq6(sender: UIButton) {
-        UpdateBoard();
+        //UpdateBoard();
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let gamemove = "gamemove";
@@ -520,7 +621,7 @@ class GameStateVC: UIViewController {
 
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -533,15 +634,15 @@ class GameStateVC: UIViewController {
             sq6.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq6.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
         
-        UpdateBoard();
+        workpls();
 
 
     }
     
     @IBAction func sq7(sender: UIButton) {
-        UpdateBoard();
+        //UpdateBoard();
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let gamemove = "gamemove";
@@ -563,7 +664,7 @@ class GameStateVC: UIViewController {
         
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -576,15 +677,15 @@ class GameStateVC: UIViewController {
             sq7.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq7.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
         
-        UpdateBoard();
+        workpls();
 
 
     }
     
     @IBAction func sq8(sender: UIButton) {
-        UpdateBoard();
+       // UpdateBoard();
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let gamemove = "gamemove";
@@ -606,7 +707,7 @@ class GameStateVC: UIViewController {
         
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -619,15 +720,15 @@ class GameStateVC: UIViewController {
             sq8.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq8.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
         
-        UpdateBoard();
+        workpls();
 
 
     }
     
     @IBAction func sq9(sender: UIButton) {
-        UpdateBoard();
+        //UpdateBoard();
         let socket = TCPIPSocket();
         let file = NSFileHandle(fileDescriptor:socket.socketDescriptor);
         let gamemove = "gamemove";
@@ -648,7 +749,7 @@ class GameStateVC: UIViewController {
         
         //New stuff
         
-        if (whichPlayer == 1){
+        /*if (whichPlayer == 1){
             
             sleep(1);
             file.writeData((gamemove as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -661,9 +762,9 @@ class GameStateVC: UIViewController {
             sq9.setTitle("O", forState: UIControlState.Normal)
         }else{
             sq9.setTitle("-", forState: UIControlState.Normal)
-        }
+        }*/
         
-        UpdateBoard();
+        workpls();
 
 
     }
