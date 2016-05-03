@@ -64,14 +64,14 @@
 		if (mysqli_num_rows($sqlreturn) > 0) 
 		{
 		#table headers drop out of php tags and back in after
-		?> <table border="1" style="width:100%"><th>Username</th><th>Password</th>
+		?> <table border="1" style="width:100%"><th>Username</th>
 		   <th>Email</th><th>Wins</th><th>Total Games</th><th>Ranking</th><th>Online</th>
 		<?php
     		#display table of information
     			while($retrow = mysqli_fetch_assoc($sqlreturn)) 
 			{
         		echo ("<tr>
-                             <td>" . $retrow["username"] . "</td><td>" . $retrow["password"]. "</td>
+                             <td>" . $retrow["username"] . "</td>
 			     <td>" . $retrow["email"] . "</td><td>" . $retrow["wins"] . "</td>
 			     <td>" . $retrow["totalgames"] . "</td><td>" . $retrow["ranking"] . "</td>
 			     <td>" . $retrow["online"] . "</td>" . 
