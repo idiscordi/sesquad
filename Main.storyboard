@@ -10,7 +10,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Mobile_Client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h27-l6-UxH">
@@ -75,7 +75,7 @@
             <objects>
                 <viewController id="koz-6D-gSc" customClass="GameStateVC" customModule="Mobile_Client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="top" id="uhu-xg-dFY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="field.png" id="zV3-KT-lJH">
@@ -107,13 +107,7 @@
                                                 <rect key="frame" x="231" y="7" width="73" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Quit Game"/>
-                                                <connections>
-                                                    <action selector="QuitGameTapped:" destination="koz-6D-gSc" eventType="touchUpInside" id="eZs-Qy-CFk"/>
-                                                </connections>
                                             </button>
-                                            <connections>
-                                                <segue destination="BYZ-38-t0r" kind="modal" identifier="quit_game" id="Gvr-V5-fbI"/>
-                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -123,7 +117,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="   -  "/>
                                 <connections>
-                                    <action selector="sq1:" destination="koz-6D-gSc" eventType="touchUpInside" id="Bnf-eA-n47"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="nx8-84-EV3"/>
+                                    <action selector="sq1:" destination="koz-6D-gSc" eventType="touchDown" id="9Mi-Or-oGR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M7p-Au-MQa">
@@ -131,7 +126,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="  -  "/>
                                 <connections>
-                                    <action selector="sq2:" destination="koz-6D-gSc" eventType="touchUpInside" id="hdK-HO-rrP"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="Qqq-8n-cN8"/>
+                                    <action selector="sq2:" destination="koz-6D-gSc" eventType="touchDown" id="GJm-u6-2oS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Tx-mI-yy9">
@@ -139,7 +135,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="-"/>
                                 <connections>
-                                    <action selector="sq3:" destination="koz-6D-gSc" eventType="touchUpInside" id="szZ-aR-7JN"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="APt-uV-TlU"/>
+                                    <action selector="sq3:" destination="koz-6D-gSc" eventType="touchDown" id="IY4-6p-4NV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tSN-pf-Is2">
@@ -147,7 +144,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="-"/>
                                 <connections>
-                                    <action selector="sq4:" destination="koz-6D-gSc" eventType="touchUpInside" id="CC6-Fb-W1R"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="4vt-hC-NIA"/>
+                                    <action selector="sq4:" destination="koz-6D-gSc" eventType="touchDown" id="lL2-2G-odO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uu7-ZG-c4V">
@@ -155,7 +153,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="   -   "/>
                                 <connections>
-                                    <action selector="sq5:" destination="koz-6D-gSc" eventType="touchUpInside" id="lg5-4Z-fkz"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="DPd-Xx-Ti4"/>
+                                    <action selector="sq5:" destination="koz-6D-gSc" eventType="touchDown" id="j6m-xQ-JM2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rwv-W6-ZYM">
@@ -163,8 +162,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="    -   "/>
                                 <connections>
-                                    <action selector="sq7:" destination="koz-6D-gSc" eventType="touchUpInside" id="7Lh-Yq-2de"/>
-                                    <action selector="sq7:" destination="koz-6D-gSc" eventType="touchDown" id="Xrq-8u-nVQ"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="BXd-SZ-reC"/>
+                                    <action selector="sq7:" destination="koz-6D-gSc" eventType="touchDown" id="4af-H2-ebb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yCh-70-Ids">
@@ -172,8 +171,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="   -  "/>
                                 <connections>
-                                    <action selector="sq8:" destination="koz-6D-gSc" eventType="touchDown" id="IfK-DE-WD5"/>
-                                    <action selector="sq8:" destination="koz-6D-gSc" eventType="touchUpInside" id="lvL-ud-LjQ"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="6bv-JM-J5L"/>
+                                    <action selector="sq8:" destination="koz-6D-gSc" eventType="touchDown" id="bJk-Y2-ifn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="whR-Xc-K3N">
@@ -181,8 +180,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="  -  "/>
                                 <connections>
-                                    <action selector="sq9:" destination="koz-6D-gSc" eventType="touchDown" id="GWt-Gw-iGz"/>
-                                    <action selector="sq9:" destination="koz-6D-gSc" eventType="touchUpInside" id="m26-OW-Ipz"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="kzp-tu-4DO"/>
+                                    <action selector="sq9:" destination="koz-6D-gSc" eventType="touchDown" id="3lV-xm-S7Q"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b1V-Bv-WWJ">
@@ -190,7 +189,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="     -    "/>
                                 <connections>
-                                    <action selector="sq6:" destination="koz-6D-gSc" eventType="touchUpInside" id="Dfw-qq-fUB"/>
+                                    <action selector="buttonRelease:" destination="koz-6D-gSc" eventType="touchUpInside" id="NII-Cn-WDc"/>
+                                    <action selector="sq6:" destination="koz-6D-gSc" eventType="touchDown" id="XbM-2c-swD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -212,8 +212,8 @@
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="400"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="sq1" destination="vFK-CJ-48y" id="u1J-bK-bGm"/>
-                        <outlet property="sq2" destination="M7p-Au-MQa" id="4Az-Np-PtP"/>
+                        <outlet property="s1" destination="vFK-CJ-48y" id="VWM-sg-hUY"/>
+                        <outlet property="s2" destination="M7p-Au-MQa" id="YyP-Uc-HeZ"/>
                         <outlet property="sq3" destination="0Tx-mI-yy9" id="Xm8-Xo-66h"/>
                         <outlet property="sq4" destination="tSN-pf-Is2" id="ruz-nd-UME"/>
                         <outlet property="sq5" destination="Uu7-ZG-c4V" id="0zu-z4-x8r"/>
@@ -225,14 +225,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Haa-uv-1a4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232" y="583"/>
+            <point key="canvasLocation" x="265" y="453"/>
         </scene>
         <!--StatVC-->
         <scene sceneID="Ax3-9U-bpA">
             <objects>
                 <viewController id="Ltm-pw-gCI" customClass="StatVC" customModule="Mobile_Client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lxT-Z4-W6v">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G9h-ls-wgE">
@@ -260,7 +260,7 @@
             <objects>
                 <viewController id="SEg-JK-1m1" customClass="SignupVC" customModule="Mobile_Client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wmq-Jw-EEK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ns3-kH-c6M">
@@ -331,7 +331,7 @@
             <objects>
                 <viewController id="QKr-Kx-Br9" customClass="LoginVC" customModule="Mobile_Client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1HK-hV-WS7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bwq-5c-wgL">
@@ -408,7 +408,7 @@
             <objects>
                 <viewController id="FA7-60-09M" customClass="loading_match_VC" customModule="Mobile_Client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l0F-hC-ihp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="EKe-3O-iGs">
@@ -449,8 +449,5 @@
         <image name="field.png" width="320" height="503"/>
         <image name="logotest.png" width="543" height="102"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Gvr-V5-fbI"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
